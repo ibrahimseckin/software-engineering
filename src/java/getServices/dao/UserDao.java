@@ -32,7 +32,7 @@ public class UserDao extends DaoConnect {
     public void insertUser(String firstname, String surname, String phoneNumber, String email,
             String address, int age, String city, String username, String password) {
         try {
-            logIt("insertUser cagirildi");
+            /*logIt("insertUser cagirildi");
             //logIt("insert module gelen module id:" + module_id);
             logIt("firstname:" + firstname);
             logIt("surname:" + surname);
@@ -43,7 +43,7 @@ public class UserDao extends DaoConnect {
             logIt("city:" + city);
             logIt("username:" + username);
             logIt("password:" + password);
-            
+            */
             String query = "Insert into users" + "(firstname,surname,phoneno,email,address,age,city,username,password)"
                     + "values (?,?,?,?,?,?,?,?,?) ";
 
@@ -72,4 +72,31 @@ public class UserDao extends DaoConnect {
         }
 
     }
+    
+    public boolean isRegistered(String username, String password){
+        boolean isRegistered = false;
+        try{
+            
+        String query = "SELECT username,password FROM (users) ";
+
+            statement = conn.createStatement();
+            result = statement.executeQuery(query);
+
+            while (result.next()) {
+                String dbusername = result.getString("username");
+                String dbpassword = result.getString("password");
+                if(dbusername.equals(username) && dbpassword.equals(password)){
+                    isRegistered = true;
+                    break;
+                }
+                    
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        
+        return isRegistered;
+    }
+    
+    
 }
