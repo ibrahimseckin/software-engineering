@@ -25,8 +25,8 @@ public class WriteProperties {
             prop.setProperty("serverName", "173.208.136.194");
             prop.setProperty("sid", "test");
             prop.setProperty("port", "3306");
-            prop.setProperty("databaseUser", "webapp");
-            prop.setProperty("databasePassword", "webapp14");
+            prop.setProperty("dbuser", "webapp");
+            prop.setProperty("dbpassword", "webapp14");
 
             //save properties to project root folder
             prop.store(new FileOutputStream("config.properties"), null);
