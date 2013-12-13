@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="template.xhtml">
+
+    <ui:define name="title">
+        <title> Register Page </title>
+    </ui:define>
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">
+        <h3 class="page-header col-sm-offset-1">Register and start looking for services</h3>
+        <div class="jumbotron col-sm-4 pull-right">
+            <p>If you are a member already click here to login: </p><h:link outcome="login" value="Login" styleClass="btn btn-primary"/>
+        </div>
+        <div class ="col-sm-8">
+            <h:form styleClass="form-horizontal">
+                <h3>Popup</h3>  
+                <p:calendar value="#{requestBean.request.timelimit}" id="popupCal" />  
+                
+                <p:growl id="growl" showDetail="true" life="3000" /> 
+
+
+                <div class="form-group">
+                    <h:outputText value="Field: " />  
+                    <p:selectOneMenu value="#{requestBean.request.field}" style="width:200px; height:30px">  
+                        <f:selectItem itemLabel="Select One" itemValue="" />  
+                        <f:selectItems value="#{requestBean.fieldList}"/>  
+                    </p:selectOneMenu>
+                </div>
+
+                <div class="form-group">
+                    <h:outputText value="Popup Date:" />  
+                    <h:outputText value="#{requestBean.request.timelimit}" id="popupDate">  
+                        <f:convertDateTime pattern="d/M/yyyy"/>  
+                    </h:outputText>  
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="city" value="city" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="city" value="#{requestBean.request.city}" styleClass="form-control"/>
+                    </div></div>
+
+                <div class="form-group">
+                    <h:outputLabel for="budget" value="Budget" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="budget" value="#{requestBean.request.budget}" styleClass="form-control"/>
+                    </div></div>
+
+                <div class="form-group">
+                    <h:outputLabel for="summary" value="Summary" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="summary" value="#{requestBean.request.summary}" styleClass="form-control"/>
+                    </div></div>
+
+
+                <div class="col-sm-offset-3 col-sm-6">
+                    <p:commandButton id="RequestButton" value="Request" action="#{requestBean.buttonRequest()}" update="growl" styleClass="btn btn-success btn-block"/>
+                </div>
+
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
