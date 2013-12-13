@@ -11,15 +11,20 @@
     <ui:define name="metadata">
     </ui:define>
     <ui:define name="content">
-        <h3 class="page-header col-sm-offset-1">Register and start looking for services</h3>
+        <h3 class="page-header">Register and start looking for services</h3>
         <div class="jumbotron col-sm-4 pull-right">
             <p>If you are a member already click here to login: </p><h:link outcome="login" value="Login" styleClass="btn btn-primary"/>
         </div>
         <div class ="col-sm-8">
+            <h3>Select user type:</h3>
+          <p:tabView effect="blind" effectDuration="normal">
+               
+            <p:tab title="Normal User">
+                <div class="well" style="padding-bottom: 70px;">
+
         <h:form styleClass="form-horizontal">
             <p:growl id="growl" showDetail="true" life="3000" /> 
-            
-            
+            <h4>Normal User</h4>
                 <div class="form-group">
                 <h:outputLabel for="firstname" value="Firstname" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
                 <div class="col-sm-6">
@@ -31,7 +36,7 @@
                 </div></div>
             <div class="form-group">
                 <h:outputLabel for="phoneno" value="Phone Number" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputMask value="#{register.user.phoneNumber}" mask="(999) 999-9999" styleClass="form-control"/>
+                <div class="col-sm-6"><p:inputMask id="phoneno" value="#{register.user.phoneNumber}" mask="(999) 999-9999" styleClass="form-control"/>
                 </div></div>
             <div class="form-group">
                 <h:outputLabel for="email" value="Email" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
@@ -60,8 +65,54 @@
             <div class="col-sm-offset-3 col-sm-6">
                 <p:commandButton id="RegisterButton" value="Register" action="#{register.buttonRegister}" update="growl" styleClass="btn btn-success btn-block"/>
             </div>
-          
         </h:form>
+                </div>
+            </p:tab>
+              <p:tab title="Provider">
+                  <div class="well" style="padding-bottom: 70px;">
+              <h:form styleClass="form-horizontal">
+                  <p:growl id="growl2" showDetail="true" life="3000" /> 
+                <h4>Provider</h4>
+                <div class="form-group">
+                    <h:outputLabel for="providername" value="ProviderName" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6">
+                        <p:inputText id="providername" value="#{register.provider.pname}" styleClass="form-control"/>
+                    </div></div>
+                <div class="form-group">
+                    <h:outputLabel for="phoneno2" value="Phone Number" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputMask id="phoneno2" value="#{register.provider.phoneNumber}" mask="(999) 999-9999" styleClass="form-control"/>
+                    </div></div>
+                <div class="form-group">
+                    <h:outputLabel for="email2" value="Email" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="email2" value="#{register.provider.email}" styleClass="form-control"/>
+                    </div></div>
+                <div class="form-group">
+                    <h:outputLabel for="address2" value="Address" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="address2" value="#{register.provider.address}" styleClass="form-control"/>
+                    </div></div>
+                <div class="form-group">
+                    <h:outputLabel for="city2" value="City" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="city2" value="#{register.provider.city}" styleClass="form-control"/>
+                    </div></div>
+                <div class="form-group">
+                    <h:outputLabel for="field2" value="Field" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="field2" value="#{register.provider.field}" styleClass="form-control"/>
+                    </div></div>
+                <div class="form-group">
+                    <p:outputLabel for="uname2" value="Username" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="uname2" value="#{register.provider.username}" required="true" styleClass="form-control"/>
+                    </div></div>
+                <div class="form-group">
+                    <h:outputLabel for="password2" value="Password" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                    <div class="col-sm-6"><p:inputText id="password2" value="#{register.provider.password}" required="true" styleClass="form-control"/>
+                    </div></div>
+                <div class="col-sm-offset-3 col-sm-6">
+                    <p:commandButton id="RegisterButton2" value="Register" action="#{register.providerRegister}" update="growl2" styleClass="btn btn-success btn-block"/>
+                </div>
+            </h:form>
+                  </div>
+              </p:tab>
+          </p:tabView>
         </div>
     </ui:define>
 </ui:composition>
