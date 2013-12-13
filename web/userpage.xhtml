@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="template.xhtml">
+
+    <ui:define name="title">
+        <title> User Page </title>
+    </ui:define>
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">
+        <h3 class="page-header col-sm-offset-1">Register and start looking for services</h3>
+        <div class="jumbotron col-sm-4 pull-right">
+            <p>If you are a member already click here to login: </p><h:link outcome="login" value="Login" styleClass="btn btn-primary"/>
+        </div>
+        <div class ="col-sm-8">
+            <h:form styleClass="form-horizontal">
+                <p:growl id="growl" showDetail="true" life="3000" /> 
+
+                <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable" var="userRequest" value="#{userpage.requestList}" widgetVar="requestTable"
+                             paginator="true" rows="20"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="10,20,30"
+                             paginatorPosition="bottom"
+                             emptyMessage="No request found with given criteria" filteredValue="#{userpage.filteredRequestList}"
+                             >
+                    <f:facet name="header" > 
+                        <p:outputPanel style="float:right; margin-top: 5px; ">  
+                            <h:outputText value="Search  " />  
+                            <p:inputText id="globalFilter" onkeyup="requestTable.filter()"   style="height: 30px" />  
+                        </p:outputPanel>  
+                    </f:facet> 
+
+                    <p:column   filterBy="field" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="fieldColumn" headerText="Field" sortBy="#{userRequest.field}" >
+                        <h:outputText value="#{userRequest.field}" />
+                    </p:column>
+
+                    <p:column   filterBy="requestDate" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="requestDare"   headerText="RequestDate" sortBy="#{userRequest.requestDate}" >  
+                        <h:outputText value="#{userRequest.requestDate}" />  
+                    </p:column>  
+
+                    <p:column   filterBy="timelimit" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="timelimit"   headerText="Timelimit" sortBy="#{userRequest.timelimit}">  
+                        <h:outputText value="#{userRequest.timelimit}" />  
+                    </p:column>
+
+                    <p:column id="city"   headerText="City" sortBy="#{userRequest.city}">  
+                        <h:outputText value="#{userRequest.city}" />  
+                    </p:column>
+
+                    <p:column id="budget"   headerText="Budget" sortBy="#{userRequest.budget}">  
+                        <h:outputText value="#{userRequest.budget}" />  
+                    </p:column>
+
+
+                </p:dataTable> 
+
+
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

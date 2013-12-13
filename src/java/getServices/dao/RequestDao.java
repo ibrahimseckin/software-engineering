@@ -6,6 +6,7 @@
 package getServices.dao;
 
 import static getServices.dao.DaoConnect.conn;
+import getServices.model.Requests;
 import getServices.util.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,8 @@ public class RequestDao extends DaoConnect {
     ResultSet result;
 
     private List<String> fieldList;
-
+    private List<Requests> requestList;
+    
     private void logIt(String s) {
         Logger.logIt(s);
     }
@@ -64,6 +66,36 @@ public class RequestDao extends DaoConnect {
         }
     }
 
+    public List<Requests> getRequest() {
+        try {
+            logIt("getRequestList calisti");
+            setRequestList(new ArrayList<Requests>());
+            logIt("sorgu yapti");
+            String query = "SELECT field,reqdate,timelimit,city,budget,summary from (requests) ";
+            logIt("sorgu calisti");
+
+            statement = conn.createStatement();
+            result = statement.executeQuery(query);
+
+            while (result.next()) {
+                logIt("while'a girdi");
+                //int dbUserId = result.getInt("userid");
+                String field = result.getString("field");
+                Date reqdate = result.getDate("reqdate");
+                Date timelimit = result.getDate("timelimit");
+                String city = result.getString("city");
+                Double budget = result.getDouble("budget");
+                String summary = result.getString("summary");
+                        
+                //if(dbUserId == userid)
+                getRequestList().add(new Requests(field,timelimit,reqdate,city,budget,summary));
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return getRequestList();
+    }
+
     public List<String> getList() {
         try {
             logIt("getfieldList calisti");
@@ -71,10 +103,10 @@ public class RequestDao extends DaoConnect {
             logIt("sorgu yapti");
             String query = "SELECT field FROM (providers) ";
             logIt("sorgu calisti");
-            
+
             statement = conn.createStatement();
             result = statement.executeQuery(query);
-            
+
             while (result.next()) {
                 logIt("while'a girdi");
                 String field = result.getString("field");
@@ -99,6 +131,20 @@ public class RequestDao extends DaoConnect {
      */
     public void setFieldList(List<String> fieldList) {
         this.fieldList = fieldList;
+    }
+
+    /**
+     * @return the requestList
+     */
+    public List<Requests> getRequestList() {
+        return requestList;
+    }
+
+    /**
+     * @param requestList the requestList to set
+     */
+    public void setRequestList(List<Requests> requestList) {
+        this.requestList = requestList;
     }
 
 }

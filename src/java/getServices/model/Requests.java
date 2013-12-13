@@ -17,10 +17,23 @@ public class Requests {
     private int userid;
     private String field;
     private Date timelimit;
+    private Date requestDate;
     private String city;
     private double budget;
     private String summary;
+    
+    public Requests(){} //default constructor
+    
+    public Requests(String field,Date timelimit,Date requestDate, String city,double budget, String summary){
+        this.field = field;
+        this.timelimit = timelimit;
+        this.requestDate = requestDate;
+        this.city = city;
+        this.budget = budget;
+        this.summary = summary;
+    }
 
+    
     /**
      * @return the id
      */
@@ -117,6 +130,20 @@ public class Requests {
      */
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    /**
+     * @return the requestDate
+     */
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    /**
+     * @param requestDate the requestDate to set
+     */
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 
 }
