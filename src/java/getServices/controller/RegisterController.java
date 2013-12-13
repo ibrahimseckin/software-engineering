@@ -6,7 +6,9 @@
 
 package getServices.controller;
 
+import getServices.dao.ServicesDao;
 import getServices.dao.UserDao;
+import getServices.model.Provider;
 import getServices.model.User;
 import getServices.util.Logger;
 import javax.faces.bean.ManagedBean;
@@ -22,27 +24,25 @@ import javax.faces.bean.ViewScoped;
 public class RegisterController {
     
     private User user = new User();
+    private Provider provider = new Provider();
+    
     UserDao userdao;
+    ServicesDao servicesdao;
     
     private void logIt(String s) {
         Logger.logIt(s);
     }
     
     public void buttonRegister() throws Exception{
-        logIt("Button Register");
-        logIt("firstname:" + user.getFirstname());
-        logIt("surname:" + user.getSurname());
-        logIt("phone:" + user.getPhoneNumber());
-        logIt("email:" + user.getEmail());
-        logIt("address:" + user.getAddress());
-        logIt("age:" + user.getAge());
-        logIt("city:" + user.getCity());
-        logIt("username:" + user.getUsername());
-        logIt("password:" + user.getPassword());
-        
         userdao = new UserDao();
         userdao.insertUser(user.getFirstname(), user.getSurname(), user.getPhoneNumber(), user.getEmail(), 
                 user.getAddress(), user.getAge(), user.getCity(), user.getUsername(), user.getPassword());
+    }
+    
+    public void providerRegister() throws Exception{
+        servicesdao = new ServicesDao();
+        servicesdao.insertProvider(provider.getPname(),provider.getPhoneNumber(), provider.getEmail(),provider.getAddress(),
+                provider.getCity(),provider.getField(), provider.getUsername(),provider.getPassword());
     }
     
     /**
@@ -57,6 +57,20 @@ public class RegisterController {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * @return the provider
+     */
+    public Provider getProvider() {
+        return provider;
+    }
+
+    /**
+     * @param provider the provider to set
+     */
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
     
 }
