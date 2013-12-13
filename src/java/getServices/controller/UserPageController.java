@@ -31,14 +31,16 @@ public class UserPageController {
     public UserPageController() throws Exception {
         //logIt("moduleController constructor");
         requestList = new ArrayList<Requests>();
-        requestdao = new RequestDao();
+        
 
         
     }
     
     public void openRequestTab() throws Exception {
-        if(!opened)
+        if(!opened){
+            requestdao = new RequestDao();
             requestList = requestdao.getRequest();
+            }
         opened=true;
     }
     /**
