@@ -33,9 +33,9 @@ public class ServicesDao extends DaoConnect {
     public void insertProvider(String pname, String phoneNumber, String email,
             String address, String city, String field, String username, String password) {
         try {
-
+            
             String query = "Insert into providers" + "(pname,phoneno,email,address,city,field,username,password)"
-                    + "values (?,?,?,?,?,?,?,?,?) ";
+                    + "values (?,?,?,?,?,?,?,?) ";
 
             pstatement = conn.prepareStatement(query);
             pstatement.setString(1, pname);
