@@ -22,6 +22,7 @@ import javax.faces.model.SelectItem;
 public class UserPageController {
     
     private Requests request = new Requests();
+    private boolean opened;
     
     private List<Requests> requestList;
     private List<Requests> filteredRequestList;
@@ -32,9 +33,14 @@ public class UserPageController {
         requestList = new ArrayList<Requests>();
         requestdao = new RequestDao();
 
-        requestList = requestdao.getRequest();
+        
     }
-
+    
+    public void openRequestTab() throws Exception {
+        if(!opened)
+            requestList = requestdao.getRequest();
+        opened=true;
+    }
     /**
      * @return the requestList
      */

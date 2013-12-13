@@ -12,9 +12,7 @@
     </ui:define>
     <ui:define name="content">
         <h3 class="page-header">Register and start looking for services</h3>
-        <div class="jumbotron col-sm-4 pull-right">
-            <p>If you are a member already click here to login: </p><h:link outcome="login" value="Login" styleClass="btn btn-primary"/>
-        </div>
+        
         <div class ="col-sm-8">
             <h3>Select user type:</h3>
           <p:tabView effect="blind" effectDuration="normal">
@@ -113,6 +111,9 @@
                   </div>
               </p:tab>
           </p:tabView>
+        </div>
+        <div class="jumbotron col-sm-4 pull-right">
+            <p>If you are a member already click here to login: </p><h:link outcome="login" value="Login" styleClass="btn btn-primary"/>
         </div>
     </ui:define>
 </ui:composition>

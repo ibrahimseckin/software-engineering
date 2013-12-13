@@ -26,23 +26,8 @@ public class DaoConnect {
     
     public  Statement connect() throws Exception {
 
-        Properties prop = new Properties();
-        prop.load(new FileInputStream("config.properties"));
-
-        String serverName = prop.getProperty("serverName");//server ip
-        //logIt("servername:" + serverName);
-        String sid = "test";
-        //prop.getProperty("sid");//dbname
-        //logIt("sid:" + sid);
-        String url = "jdbc:mysql://" + serverName + ":" + prop.getProperty("port")+"/" + sid;
-        String properties= "?useUnicode=true&amp;characterEncoding=utf8"; //Türkçe karakter problemi yaşamamak için
-        String databaseUser = prop.getProperty("dbuser");
-        //logIt("dbuser:" + databaseUser);
-        String databasePassword = prop.getProperty("dbpassword");
-        //logIt("dbpassword:" + databasePassword);
         Class.forName("com.mysql.jdbc.Driver");
-        //logIt("driver okundu");
-        conn = DriverManager.getConnection(url, databaseUser, databasePassword);
+        conn = DriverManager.getConnection("jdbc:mysql://173.208.136.194:3306/test", "webapp", "webapp14");
         logIt("connection dondu");
         return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         

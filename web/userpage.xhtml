@@ -11,14 +11,15 @@
     <ui:define name="metadata">
     </ui:define>
     <ui:define name="content">
-        <h3 class="page-header col-sm-offset-1">Register and start looking for services</h3>
-        <div class="jumbotron col-sm-4 pull-right">
-            <p>If you are a member already click here to login: </p><h:link outcome="login" value="Login" styleClass="btn btn-primary"/>
-        </div>
-        <div class ="col-sm-8">
-            <h:form styleClass="form-horizontal">
-                <p:growl id="growl" showDetail="true" life="3000" /> 
-
+        <h3 class="page-header col-sm-offset-1">Username</h3>
+        <div class ="col-sm-8 col-sm-offset-1">
+            
+                 
+                 <p:accordionPanel dynamic="true" cache="true" activeIndex="-1">
+                     <p:ajax event="tabChange" listener="#{userpage.openRequestTab()}"/>
+                     <p:tab title="Show requests by this user">  
+                         <h:form styleClass="form-horizontal">
+                             <p:growl id="growl" showDetail="true" life="3000" />
                 <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable" var="userRequest" value="#{userpage.requestList}" widgetVar="requestTable"
                              paginator="true" rows="20"  
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
@@ -64,9 +65,11 @@
 
 
                 </p:dataTable> 
+                                </h:form>
+                         </p:tab>  
+                </p:accordionPanel>  
 
-
-            </h:form>
+         
         </div>
     </ui:define>
 </ui:composition>
