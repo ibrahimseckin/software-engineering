@@ -1,24 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+
     <h:head>
-        <title>Register Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <ui:insert name="title" />
+        <ui:debug />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet"/>
-    </h:head>
-    <h:body>
-        <ui:insert name ="header">
+        <!-- Bootstrap -->
+        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/css/navbar.css" rel="stylesheet"/>
         
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <ui:insert name="metadata" />
+    </h:head>
+
+    <h:body onload="statusDialog.hide();" style="padding-top: 70px; padding-bottom: 70px;">
+        <div class="navbar navbar-fixed-top navbar-default" role="navigation">
        <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,12 +37,30 @@ and open the template in the editor.
             <li class="active"><h:link outcome="index" value="Home" /></li>
             <li><h:link outcome="register" value="Register" /></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><h:link outcome="register" value="Register" /></li>
+            
+          <h:form styleClass="navbar-form navbar-right">
+              <div class="form-group">
+            <p:inputText value="#{login.user.username}"
+                                 id="searching" label="search" styleClass="form-control input-sm"/>
+            <p:watermark for="searching" value="Search for services" />
+            </div>
+            <p:commandButton id="searchButton" value="Search" title="Search" update="" 
+                                     action="#{login.buttonLogin}" styleClass="btn btn-success btn-xs"/>
+            </h:form>
+          <ul class="nav navbar-nav navbar-left">
+            <li><h:link outcome="login" value="Login" /></li>
           </ul>
         </div><!--/.nav-collapse -->
        </div>
       </div>
-      </ui:insert>
+        
+        <div class="container">
+            <ui:insert name="content" />
+        </div>
+        
+        <h:outputScript library="primefaces" name="jquery/jquery.js" />
+            <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
     </h:body>
+
+</f:view>
 </html>
