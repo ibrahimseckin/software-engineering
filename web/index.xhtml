@@ -16,7 +16,18 @@
         <div class="jumbotron">
             <div class="page-header">
                 <h1>getServices <small>Find experts of your needs</small></h1>
-                <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable" var="userRequest" value="#{homepage.requestList}" widgetVar="requestTable"
+                <p>getServices is a website where you can find experts for your daily errands.
+                If you are an expert yourself, you can also apply to existing requests.
+                Register now to start.</p>
+                <h:link outcome="register" value="Register" styleClass="btn btn-success btn-lg" />
+               
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-lg-8">
+                <h3>Latest requests from all users:</h3>
+            <h:form>
+         <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable" var="userRequest" value="#{homepage.requestList}" widgetVar="requestTable"
                              paginator="true" rows="20"  
                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                              rowsPerPageTemplate="10,20,30"
@@ -61,8 +72,8 @@
 
 
                 </p:dataTable> 
+                </h:form>
             </div>
         </div>
-
     </ui:define>
 </ui:composition>
