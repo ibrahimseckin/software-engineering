@@ -20,11 +20,11 @@ public class UserDao extends DaoConnect {
     PreparedStatement pstatement = null;
     Statement statement;
     ResultSet result;
-    
+
     private void logIt(String s) {
         Logger.logIt(s);
     }
-    
+
     public UserDao() throws Exception {
         connect();
     }
@@ -36,7 +36,7 @@ public class UserDao extends DaoConnect {
                     + "values (?,?,?,?,?,?,?,?,?) ";
 
             pstatement = conn.prepareStatement(query);
-            pstatement.setString(1,firstname );
+            pstatement.setString(1, firstname);
             pstatement.setString(2, surname);
             pstatement.setString(3, phoneNumber);
             pstatement.setString(4, email);
@@ -52,12 +52,31 @@ public class UserDao extends DaoConnect {
         }
 
     }
-    
-    public boolean isRegistered(String username, String password){
+
+    public int getUserId(String username, String password) {
+        int userId = 0;
+        try {
+            String query = "SELECT  id from (users) WHERE username =? AND password =? ";
+            pstatement = conn.prepareStatement(query);
+            pstatement.setString(1, username);
+            pstatement.setString(2, password);
+            result = pstatement.executeQuery();
+
+            if (result.next()) {
+                userId = result.getInt(1);
+            }
+            return userId;
+
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+    }
+
+    public boolean isRegistered(String username, String password) {
         boolean isRegistered = false;
-        try{
-            
-        String query = "SELECT username,password FROM (users) ";
+        try {
+
+            String query = "SELECT username,password FROM (users) ";
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
@@ -65,18 +84,17 @@ public class UserDao extends DaoConnect {
             while (result.next()) {
                 String dbusername = result.getString("username");
                 String dbpassword = result.getString("password");
-                if(dbusername.equals(username) && dbpassword.equals(password)){
+                if (dbusername.equals(username) && dbpassword.equals(password)) {
                     isRegistered = true;
                     break;
                 }
-                    
+
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
-        
+
         return isRegistered;
     }
-    
-    
+
 }
