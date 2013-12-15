@@ -43,7 +43,7 @@ public class RequestDao extends DaoConnect {
         return new java.sql.Timestamp(today.getTime());
     }
 
-    public void insertProvider(int userid, String field, Date timelimit,
+    public void insertRequest(int userid, String field, Date timelimit,
             String city, double budget, String summary) {
         try {
 

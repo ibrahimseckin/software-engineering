@@ -46,7 +46,7 @@ public class RequestController {
     
     public void buttonRequest() throws Exception {
         requestdao = new RequestDao();
-        requestdao.insertProvider(request.getUserid(), request.getField(), request.getTimelimit(),
+        requestdao.insertRequest(request.getUserid(), request.getField(), request.getTimelimit(),
                 request.getCity(), request.getBudget(), request.getSummary());
     }
 
