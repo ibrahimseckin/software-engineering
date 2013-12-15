@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getServices.controller;
 
 import getServices.dao.RequestDao;
@@ -13,10 +8,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
-/**
- *
- * @author Ibrahim Seckin
- */
 @ManagedBean(name = "homepage")
 @ViewScoped
 
@@ -29,40 +20,22 @@ public class HomepageController {
 
     public HomepageController() throws Exception {
         requestList = new ArrayList<Requests>();
-
         requestdao = new RequestDao();
         requestList = requestdao.getRequest();
-        /*try {
-            Thread.sleep(10000);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }*/
     }
 
-    /**
-     * @return the requestList
-     */
     public List<Requests> getRequestList() {
         return requestList;
     }
 
-    /**
-     * @param requestList the requestList to set
-     */
     public void setRequestList(List<Requests> requestList) {
         this.requestList = requestList;
     }
 
-    /**
-     * @return the filteredRequestList
-     */
     public List<Requests> getFilteredRequestList() {
         return filteredRequestList;
     }
 
-    /**
-     * @param filteredRequestList the filteredRequestList to set
-     */
     public void setFilteredRequestList(List<Requests> filteredRequestList) {
         this.filteredRequestList = filteredRequestList;
     }
@@ -74,7 +47,6 @@ public class HomepageController {
         for (int i = 0; i < data.length; i++) {
             options[i + 1] = new SelectItem(data[i], data[i]);
         }
-
         return options;
     }
 }
