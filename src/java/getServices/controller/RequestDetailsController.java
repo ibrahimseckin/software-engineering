@@ -56,4 +56,12 @@ public class RequestDetailsController {
     public void setRequest(Requests request) {
         this.request = request;
     }
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
