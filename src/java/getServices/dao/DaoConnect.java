@@ -25,10 +25,12 @@ public class DaoConnect {
     }
     
     public  Statement connect() throws Exception {
-
+        if(conn == null){
         Class.forName("com.mysql.jdbc.Driver");
         conn = DriverManager.getConnection("jdbc:mysql://173.208.136.194:3306/test", "webapp", "webapp14");
         logIt("connection dondu");
+        return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+        }
         return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         
     }

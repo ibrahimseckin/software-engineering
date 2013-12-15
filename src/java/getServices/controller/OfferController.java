@@ -8,9 +8,6 @@ package getServices.controller;
 
 import getServices.dao.OfferDao;
 import getServices.model.Offers;
-import getServices.util.Logger;
-import java.util.ArrayList;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
@@ -33,7 +30,6 @@ public class OfferController {
     }
     
     public void buttonOffer() throws Exception {
-        offerdao = new OfferDao(); // Zaten default const. da yapıyoruz?
         offerdao.insertOffer(offer.getRequestId(), offer.getProviderId(), offer.getPrice(),
                 offer.getExp());
     }
