@@ -21,6 +21,7 @@ public class User {
     private String address;
     private int age;
     private String city;
+    private boolean loggedIn;
 
     /**
      * @return the id
@@ -160,5 +161,19 @@ public class User {
      */
     public void setCity(String city) {
         this.city = city;
+    }
+
+    /**
+     * @return the loggedIn
+     */
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    /**
+     * @param loggedIn the loggedIn to set
+     */
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 }
