@@ -1,30 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getServices.dao;
 
+import getServices.model.User;
 import getServices.util.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author Ibrahim Seckin <your.name at your.org>
- */
 public class UserDao extends DaoConnect {
 
     PreparedStatement pstatement = null;
     Statement statement;
     ResultSet result;
-
+    
     private void logIt(String s) {
         Logger.logIt(s);
     }
-
+    
     public UserDao() throws Exception {
         connect();
     }
@@ -36,7 +28,7 @@ public class UserDao extends DaoConnect {
                     + "values (?,?,?,?,?,?,?,?,?) ";
 
             pstatement = conn.prepareStatement(query);
-            pstatement.setString(1, firstname);
+            pstatement.setString(1,firstname );
             pstatement.setString(2, surname);
             pstatement.setString(3, phoneNumber);
             pstatement.setString(4, email);
@@ -50,9 +42,8 @@ public class UserDao extends DaoConnect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
     }
-
+    
     public int getUserId(String username, String password) {
         int userId = 0;
         try {
@@ -71,12 +62,12 @@ public class UserDao extends DaoConnect {
             throw new UnsupportedOperationException(ex.getMessage());
         }
     }
-
-    public boolean isRegistered(String username, String password) {
+    
+    public boolean isRegistered(String username, String password){
         boolean isRegistered = false;
-        try {
-
-            String query = "SELECT username,password FROM (users) ";
+        try{
+            
+        String query = "SELECT username,password FROM (users) ";
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
@@ -84,17 +75,44 @@ public class UserDao extends DaoConnect {
             while (result.next()) {
                 String dbusername = result.getString("username");
                 String dbpassword = result.getString("password");
-                if (dbusername.equals(username) && dbpassword.equals(password)) {
+                if(dbusername.equals(username) && dbpassword.equals(password)){
                     isRegistered = true;
                     break;
                 }
-
+                    
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
-
+        
         return isRegistered;
     }
-
+    
+    public User getOneUser(int inputId) {
+        User user = new User();
+        try {
+            String query = "SELECT id,firstname,surname,email,address,age,city,username,phoneno from (users) "+
+                    "where id=?";
+            pstatement = conn.prepareStatement(query);
+            pstatement.setInt(1, inputId);
+            result = pstatement.executeQuery();
+            
+            while (result.next()) {
+                user.setId(result.getInt("id"));
+                user.setFirstname(result.getString("firstname"));
+                user.setSurname(result.getString("surname"));
+                user.setEmail(result.getString("email"));
+                user.setAddress(result.getString("address"));
+                user.setCity(result.getString("city"));
+                user.setUsername(result.getString("username"));
+                user.setPhoneNumber(result.getString("phoneno"));
+                
+            }
+        } 
+        catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return user;
+    }
+    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getServices.dao;
 
 import static getServices.dao.DaoConnect.conn;
@@ -16,10 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author Ibrahim Seckin
- */
 public class RequestDao extends DaoConnect {
 
     PreparedStatement pstatement = null;
@@ -68,44 +59,49 @@ public class RequestDao extends DaoConnect {
     public Requests getOneRequest(int inputId) {
         Requests request = new Requests();
         try {
-            String query = "SELECT field,reqdate,timelimit,city,budget,summary from (requests) "+
+            String query = "SELECT * from (requests) "+
                     "where id=?";
             pstatement = conn.prepareStatement(query);
             pstatement.setInt(1, inputId);
             result = pstatement.executeQuery();
             
             while (result.next()) {
-                String dbpassword = result.getString("password");
+                request.setId(result.getInt("id"));
+                request.setUserid(result.getInt("userid"));
+                request.setField(result.getString("field"));
+                request.setTimelimit(result.getDate("timelimit"));
+                request.setCity(result.getString("city"));
+                request.setBudget(result.getInt("budget"));
+                request.setSummary(result.getString("summary"));
+                request.setRequestDate(result.getDate("reqdate"));
             }
         } 
         catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
-        return null;
+        return request;
     }
     
     public List<Requests> getRequest() {
         try {
             setRequestList(new ArrayList<Requests>());
-            logIt("sorgu yapti");
-            String query = "SELECT field,reqdate,timelimit,city,budget,summary from (requests) ";
-            logIt("sorgu calisti");
+            String query = "SELECT * from (requests) ";
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
 
             while (result.next()) {
-                logIt("while'a girdi");
-                //int dbUserId = result.getInt("userid");
+                int id = result.getInt("id");
+                int userid = result.getInt("userid");
+                String title = result.getString("title");
                 String field = result.getString("field");
                 Date reqdate = result.getDate("reqdate");
                 Date timelimit = result.getDate("timelimit");
                 String city = result.getString("city");
                 Double budget = result.getDouble("budget");
                 String summary = result.getString("summary");
-                        
-                //if(dbUserId == userid)
-                getRequestList().add(new Requests(field,timelimit,reqdate,city,budget,summary));
+
+                getRequestList().add(new Requests(id,userid,title,field,timelimit,reqdate,city,budget,summary));
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
@@ -115,11 +111,8 @@ public class RequestDao extends DaoConnect {
 
     public List<String> getList() {
         try {
-            logIt("getfieldList calisti");
             setFieldList(new ArrayList<String>());
-            logIt("sorgu yapti");
             String query = "SELECT field FROM (providers) ";
-            logIt("sorgu calisti");
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
@@ -136,32 +129,19 @@ public class RequestDao extends DaoConnect {
         return getFieldList();
     }
 
-    /**
-     * @return the fieldList
-     */
     public List<String> getFieldList() {
         return fieldList;
     }
 
-    /**
-     * @param fieldList the fieldList to set
-     */
     public void setFieldList(List<String> fieldList) {
         this.fieldList = fieldList;
     }
 
-    /**
-     * @return the requestList
-     */
     public List<Requests> getRequestList() {
         return requestList;
     }
 
-    /**
-     * @param requestList the requestList to set
-     */
     public void setRequestList(List<Requests> requestList) {
         this.requestList = requestList;
     }
-
 }
