@@ -28,12 +28,15 @@ public class HomepageController {
     private List<Requests> filteredRequestList;
 
     public HomepageController() throws Exception {
-        //logIt("moduleController constructor");
         requestList = new ArrayList<Requests>();
 
         requestdao = new RequestDao();
         requestList = requestdao.getRequest();
-
+        /*try {
+            Thread.sleep(10000);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }*/
     }
 
     /**

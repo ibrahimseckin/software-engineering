@@ -32,28 +32,10 @@ public class UserDao extends DaoConnect {
     public void insertUser(String firstname, String surname, String phoneNumber, String email,
             String address, int age, String city, String username, String password) {
         try {
-            /*logIt("insertUser cagirildi");
-            //logIt("insert module gelen module id:" + module_id);
-            logIt("firstname:" + firstname);
-            logIt("surname:" + surname);
-            logIt("phone:" + phoneNumber);
-            logIt("email:" + email);
-            logIt("address:" + address);
-            logIt("age:" + age);
-            logIt("city:" + city);
-            logIt("username:" + username);
-            logIt("password:" + password);
-            */
             String query = "Insert into users" + "(firstname,surname,phoneno,email,address,age,city,username,password)"
                     + "values (?,?,?,?,?,?,?,?,?) ";
 
-            //logIt("insert metod serviceid: " + serviceId);
-            //logIt("insert metod modulename: " + moduleName);
-            //logIt("insert metod employeeid: " + employeeId);
-            //logIt("insert metod insertuser: " + insertUser);
-            //logIt("insert metod status: " + status);
             pstatement = conn.prepareStatement(query);
-            //pstatement.setInt(1, 1);
             pstatement.setString(1,firstname );
             pstatement.setString(2, surname);
             pstatement.setString(3, phoneNumber);
@@ -66,9 +48,7 @@ public class UserDao extends DaoConnect {
             pstatement.executeUpdate();
 
         } catch (SQLException e) {
-
             System.out.println(e.getMessage());
-
         }
 
     }

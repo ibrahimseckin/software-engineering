@@ -25,7 +25,7 @@ public class RequestDao extends DaoConnect {
     PreparedStatement pstatement = null;
     Statement statement;
     ResultSet result;
-
+    
     private List<String> fieldList;
     private List<Requests> requestList;
     
@@ -59,16 +59,33 @@ public class RequestDao extends DaoConnect {
             pstatement.setDouble(6, budget);
             pstatement.setString(7, summary);
             pstatement.executeUpdate();
-
         } catch (SQLException e) {
 
             System.out.println(e.getMessage());
         }
     }
-
+    
+    public Requests getOneRequest(int inputId) {
+        Requests request = new Requests();
+        try {
+            String query = "SELECT field,reqdate,timelimit,city,budget,summary from (requests) "+
+                    "where id=?";
+            pstatement = conn.prepareStatement(query);
+            pstatement.setInt(1, inputId);
+            result = pstatement.executeQuery();
+            
+            while (result.next()) {
+                String dbpassword = result.getString("password");
+            }
+        } 
+        catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return null;
+    }
+    
     public List<Requests> getRequest() {
         try {
-            logIt("getRequestList calisti");
             setRequestList(new ArrayList<Requests>());
             logIt("sorgu yapti");
             String query = "SELECT field,reqdate,timelimit,city,budget,summary from (requests) ";

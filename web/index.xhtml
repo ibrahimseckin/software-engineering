@@ -23,6 +23,7 @@
                
             </div>
         </div>
+        <p:outputPanel deferred="true" deferredMode="load">  
         <div class="container">
             <div class="col-lg-8">
                 <h3>Latest requests from all users:</h3>
@@ -43,7 +44,11 @@
 
                     <p:column   filterBy="field" filterMatchMode="contains" rendered="false" >  
                     </p:column>
-
+                    
+                    <p:column id="detailsColumn" headerText="Link" sortBy="" >
+                        <h:link value="Details" outcome="requestDetails?id=#{userRequest.id}" />
+                    </p:column>
+             
                     <p:column id="fieldColumn" headerText="Field" sortBy="#{userRequest.field}" >
                         <h:outputText value="#{userRequest.field}" />
                     </p:column>
@@ -75,5 +80,6 @@
                 </h:form>
             </div>
         </div>
+        </p:outputPanel>
     </ui:define>
 </ui:composition>
