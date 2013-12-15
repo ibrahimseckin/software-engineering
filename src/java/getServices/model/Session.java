@@ -14,6 +14,7 @@ public class Session {
     
     private int userId;
     private boolean isLoggedIn = false;
+    private boolean isUser = true;
 
     /**
      * @return the userId
@@ -41,5 +42,19 @@ public class Session {
      */
     public void setIsLoggedIn(boolean isLoggedIn) {
         this.isLoggedIn = isLoggedIn;
+    }
+
+    /**
+     * @return the isUser
+     */
+    public boolean isIsUser() {
+        return isUser;
+    }
+
+    /**
+     * @param isUser the isUser to set
+     */
+    public void setIsUser(boolean isUser) {
+        this.isUser = isUser;
     }
 }

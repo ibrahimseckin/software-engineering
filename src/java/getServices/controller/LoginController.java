@@ -5,7 +5,9 @@
  */
 package getServices.controller;
 
+import getServices.dao.ProviderDao;
 import getServices.dao.UserDao;
+import getServices.model.Provider;
 import getServices.model.Session;
 import getServices.model.User;
 import getServices.util.Logger;
@@ -24,12 +26,14 @@ import org.primefaces.context.RequestContext;
 @ManagedBean(name = "login")
 @SessionScoped
 
-public class LoginController implements Serializable{
+public class LoginController implements Serializable {
 
     UserDao userdao;
+    ProviderDao providerdao;
     private User user = new User();
+    private Provider provider = new Provider();
     private Session session = new Session();
-    
+
     private void logIt(String s) {
         Logger.logIt(s);
     }
@@ -48,22 +52,42 @@ public class LoginController implements Serializable{
         boolean loggedIn = false;
 
         userdao = new UserDao();
-        loggedIn = userdao.isRegistered(user.getUsername(), user.getPassword());
+        int userId = userdao.getUserId(user.getUsername(), user.getPassword());
+        if (userId != 0) {
+            loggedIn = true;
+        }
+
         if (loggedIn) {
             logIt("basariliya girdi");
-            int userId = userdao.getUserId(user.getUsername(), user.getPassword());
-            logIt("userid dondu");
             session.setUserId(userId);
             session.setIsLoggedIn(true);
-            
+            session.setIsUser(true);
+
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("key", user);
             Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
             sessionMap.put("session", session);
             return "userpage?faces-redirect=true";
 
         } else {
+            int providerId = providerdao.getProviderId(user.getUsername(), user.getPassword());
+            if (providerId != 0) {
+                loggedIn = true;
+            }
+            if (loggedIn) {
+                logIt("basariliya girdi");
+                session.setUserId(providerId);
+                session.setIsLoggedIn(true);
+                session.setIsUser(false);
+
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("key", user);
+                Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+                sessionMap.put("session", session);
+                return "userpage?faces-redirect=true";
+            }
+            else{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unknown login, try again"));
             return "index?faces-redirect=true";
+            }
         }
 
     }

@@ -55,29 +55,23 @@ public class ProviderDao extends DaoConnect {
     
     public void insertProviderFields(){}
     
-    public boolean isRegistered(String username, String password){
-        boolean isRegistered = false;
-        try{
-            
-        String query = "SELECT username,password FROM (providers) ";
+    public int getProviderId(String username, String password) {
+        int providerId = 0;
+        try {
+            String query = "SELECT  id from (providers) WHERE username =? AND password =? ";
+            pstatement = conn.prepareStatement(query);
+            pstatement.setString(1, username);
+            pstatement.setString(2, password);
+            result = pstatement.executeQuery();
 
-            statement = conn.createStatement();
-            result = statement.executeQuery(query);
-
-            while (result.next()) {
-                String dbusername = result.getString("username");
-                String dbpassword = result.getString("password");
-                if(dbusername.equals(username) && dbpassword.equals(password)){
-                    isRegistered = true;
-                    break;
-                }
-                    
+            if (result.next()) {
+                providerId = result.getInt(1);
             }
+            return providerId;
+
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
-        
-        return isRegistered;
     }
     
     
