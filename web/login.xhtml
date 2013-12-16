@@ -10,6 +10,7 @@
     </ui:define>
     <ui:define name="metadata">
         #{navbar.setActive(5)}
+        #{login.authorize(navbar.loggedIn)}
         <link href="#{request.contextPath}/css/signin.css" rel="stylesheet"/>
     </ui:define>
     <ui:define name="content">

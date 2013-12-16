@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getServices.controller;
 
 import getServices.dao.ProviderDao;
@@ -11,18 +6,17 @@ import getServices.model.Provider;
 import getServices.model.Session;
 import getServices.model.User;
 import getServices.util.Logger;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
+import java.util.logging.Level;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
-/**
- *
- * @author Ibrahim Seckin
- */
 @ManagedBean(name = "login")
 @SessionScoped
 
@@ -38,13 +32,10 @@ public class LoginController implements Serializable {
         Logger.logIt(s);
     }
 
-    /**
-     * @return the user
-     */
     public User getUser() {
         return user;
     }
-
+    
     public String login() throws Exception {
         logIt("login calisti");
         RequestContext context = RequestContext.getCurrentInstance();
@@ -113,10 +104,15 @@ public class LoginController implements Serializable {
         return "index?faces-redirect=true";
     }
 
-    /**
-     * @param user the user to set
-     */
     public void setUser(User user) {
         this.user = user;
+    }
+    
+    public void authorize(boolean loggedIn){
+    if(loggedIn) try {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+    } catch (IOException ex) {
+        java.util.logging.Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 }

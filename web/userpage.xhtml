@@ -10,9 +10,10 @@
     </ui:define>
     <ui:define name="metadata">
         #{navbar.setActive(4)}
+        #{userpage.authorize(navbar.loggedIn)}
     </ui:define>
     <ui:define name="content">
-        <h3 class="page-header col-sm-offset-1">Username</h3>
+        <h3 class="page-header col-sm-offset-1">#{userpage.user.username}</h3>
         <div class ="col-sm-8 col-sm-offset-1">
             
                  

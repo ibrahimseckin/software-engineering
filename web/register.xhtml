@@ -10,6 +10,7 @@
     </ui:define>
     <ui:define name="metadata">
         #{navbar.setActive(3)}
+        #{register.authorize(navbar.loggedIn)}
     </ui:define>
     <ui:define name="content">
         <h3 class="page-header">Register and start looking for services</h3>
@@ -147,7 +148,7 @@
                 <div class="col-sm-6"><p:inputText id="password" value="#{register.user.password}" required="true" styleClass="form-control"/>
                 </div></div>
             <div class="col-sm-offset-3 col-sm-6">
-                <p:commandButton id="RegisterButton" value="Register" action="#{register.buttonRegister}" update="growl" styleClass="btn btn-success btn-block"/>
+                <p:commandButton id="RegisterButton" value="Register" action="#{register.buttonRegister}" update="growl"/>
             </div>
         </h:form>
                 </div>
@@ -275,7 +276,7 @@
                     <div class="col-sm-6"><p:inputText id="password2" value="#{register.provider.password}" required="true" styleClass="form-control"/>
                     </div></div>
                 <div class="col-sm-offset-3 col-sm-6">
-                    <p:commandButton id="RegisterButton2" value="Register" action="#{register.providerRegister}" update="growl2" styleClass="btn btn-success btn-block"/>
+                    <p:commandButton id="RegisterButton2" value="Register" action="#{register.providerRegister}" update="growl2"/>
                 </div>
             </h:form>
                   </div>

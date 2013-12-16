@@ -1,25 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getServices.controller;
 
 import getServices.dao.ServicesDao;
 import getServices.dao.UserDao;
 import getServices.model.Provider;
-import getServices.model.Session;
 import getServices.model.User;
 import getServices.util.Logger;
-import java.util.Map;
+import java.io.IOException;
+import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-/**
- *
- * @author Ibrahim Seckin <your.name at your.org>
- */
 @ManagedBean(name = "register")
 @ViewScoped
 public class RegisterController {
@@ -46,32 +37,27 @@ public class RegisterController {
                 provider.getCity(), provider.getField(), provider.getUsername(), provider.getPassword());
     }
 
-    /**
-     * @return the user
-     */
     public User getUser() {
         return user;
     }
 
-    /**
-     * @param user the user to set
-     */
     public void setUser(User user) {
         this.user = user;
     }
 
-    /**
-     * @return the provider
-     */
     public Provider getProvider() {
         return provider;
     }
 
-    /**
-     * @param provider the provider to set
-     */
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
-
+    
+    public void authorize(boolean loggedIn){
+    if(loggedIn) try {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+    } catch (IOException ex) {
+        java.util.logging.Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
 }

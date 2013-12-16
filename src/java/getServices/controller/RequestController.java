@@ -3,10 +3,13 @@ package getServices.controller;
 import getServices.dao.RequestDao;
 import getServices.model.Requests;
 import getServices.util.Logger;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 @ManagedBean(name = "requestBean")
@@ -69,5 +72,13 @@ public class RequestController {
 
     public void setFilteredFieldList(List<String> filteredFieldList) {
         this.filteredFieldList = filteredFieldList;
+    }
+    
+    public void authorize(boolean loggedIn, boolean isUser){
+    if(!loggedIn || !isUser) try {
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+    } catch (IOException ex) {
+        java.util.logging.Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 }
