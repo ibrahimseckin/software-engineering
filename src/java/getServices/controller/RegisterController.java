@@ -56,7 +56,7 @@ public class RegisterController {
     public String providerRegister() throws Exception {
         servicesdao = new ServicesDao();
         servicesdao.insertProvider(provider.getPname(), provider.getPhoneNumber(), provider.getEmail(), provider.getAddress(),
-                provider.getCity(), provider.getField(), provider.getUsername(), provider.getPassword());
+                provider.getCity(), null, provider.getUsername(), provider.getPassword());
         FacesMessage message = new FacesMessage();
         message.setSeverity(FacesMessage.SEVERITY_INFO);
         message.setSummary("Succesfull Register");

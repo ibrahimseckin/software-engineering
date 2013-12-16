@@ -113,6 +113,34 @@ logIt("sdfzxc");
         public List<Provider> getProviderList() {
         return providerList;
     }
+        
+        public Provider getOneProvider(int inputId) {
+        Provider provider = new Provider();
+        try {
+            String query = "SELECT id,pname,phoneno,email,address,city,rate,username,resume from (providers) "+
+                    "where id=?";
+            pstatement = conn.prepareStatement(query);
+            pstatement.setInt(1, inputId);
+            result = pstatement.executeQuery();
+            
+            while (result.next()) {
+                provider.setId(result.getInt("id"));
+                provider.setPname(result.getString("pname"));
+                provider.setPhoneNumber(result.getString("phoneno"));
+                provider.setEmail(result.getString("email"));
+                provider.setAddress(result.getString("address"));
+                provider.setCity(result.getString("city"));
+                provider.setRate(result.getDouble("rate"));
+                provider.setUsername(result.getString("username"));
+                provider.setResume(result.getString("resume"));
+                
+            }
+        } 
+        catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return provider;
+    }
     
     
     

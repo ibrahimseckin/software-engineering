@@ -1,7 +1,9 @@
 package getServices.controller;
 
+import getServices.dao.ProviderDao;
 import getServices.dao.RequestDao;
 import getServices.dao.UserDao;
+import getServices.model.Provider;
 import getServices.model.Requests;
 import getServices.model.Session;
 import getServices.model.User;
@@ -22,18 +24,26 @@ public class UserPageController {
     private Requests request = new Requests();
     private boolean opened;
     private User user;
+    private Provider provider;
     private List<Requests> requestList;
     private List<Requests> filteredRequestList;
     RequestDao requestdao;
     UserDao userdao;
+    ProviderDao providerdao;
 
     public UserPageController() throws Exception {
         requestList = new ArrayList<Requests>();
         userdao = new UserDao();
+        provider = new Provider();
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         Session session = (Session) sessionMap.get("session");
         if (session != null) {
+            if(session.isIsUser()){
             user = userdao.getOneUser(session.getUserId());
+            }
+            else{
+            provider = providerdao.getOneProvider(session.getUserId());
+            }
         }
     }
 

@@ -6,6 +6,8 @@
 
 package getServices.model;
 
+import java.util.List;
+
 /**
  *
  * @author Ibrahim Seckin
@@ -17,7 +19,9 @@ public class Provider {
     private String email;
     private String address;
     private String city;
-    private String field;
+    private List<String> field;
+    private Double rate;
+    private String resume;
     private String username;
     private String password;
 
@@ -120,14 +124,14 @@ public class Provider {
     /**
      * @return the field
      */
-    public String getField() {
+    public List<String> getField() {
         return field;
     }
 
     /**
      * @param field the field to set
      */
-    public void setField(String field) {
+    public void setField(List<String> field) {
         this.field = field;
     }
 
@@ -157,6 +161,34 @@ public class Provider {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the rate
+     */
+    public Double getRate() {
+        return rate;
+    }
+
+    /**
+     * @param rate the rate to set
+     */
+    public void setRate(Double rate) {
+        this.rate = rate;
+    }
+
+    /**
+     * @return the resume
+     */
+    public String getResume() {
+        return resume;
+    }
+
+    /**
+     * @param resume the resume to set
+     */
+    public void setResume(String resume) {
+        this.resume = resume;
     }
     
 }
