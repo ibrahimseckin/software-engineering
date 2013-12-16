@@ -16,10 +16,10 @@ public class RequestDao extends DaoConnect {
     PreparedStatement pstatement = null;
     Statement statement;
     ResultSet result;
-    
+
     private List<String> fieldList;
     private List<Requests> requestList;
-    
+
     private void logIt(String s) {
         Logger.logIt(s);
     }
@@ -55,16 +55,16 @@ public class RequestDao extends DaoConnect {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public Requests getOneRequest(int inputId) {
         Requests request = new Requests();
         try {
-            String query = "SELECT * from (requests) "+
-                    "where id=?";
+            String query = "SELECT * from (requests) "
+                    + "where id=?";
             pstatement = conn.prepareStatement(query);
             pstatement.setInt(1, inputId);
             result = pstatement.executeQuery();
-            
+
             while (result.next()) {
                 request.setId(result.getInt("id"));
                 request.setUserid(result.getInt("userid"));
@@ -75,13 +75,40 @@ public class RequestDao extends DaoConnect {
                 request.setSummary(result.getString("summary"));
                 request.setRequestDate(result.getDate("reqdate"));
             }
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
         return request;
     }
-    
+
+    public List<Requests> getRequest(int userId) {
+        try {
+            setRequestList(new ArrayList<Requests>());
+            String query = "SELECT * from (requests) where userid = ? ";
+
+            pstatement = conn.prepareStatement(query);
+            pstatement.setInt(1, userId);
+            result = pstatement.executeQuery();
+
+            if (result.next()) {
+                int id = result.getInt("id");
+                int userid = result.getInt("userid");
+                String title = result.getString("title");
+                String field = result.getString("field");
+                Date reqdate = result.getDate("reqdate");
+                Date timelimit = result.getDate("timelimit");
+                String city = result.getString("city");
+                Double budget = result.getDouble("budget");
+                String summary = result.getString("summary");
+
+                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return getRequestList();
+    }
+
     public List<Requests> getRequest() {
         try {
             setRequestList(new ArrayList<Requests>());
@@ -100,8 +127,8 @@ public class RequestDao extends DaoConnect {
                 String city = result.getString("city");
                 Double budget = result.getDouble("budget");
                 String summary = result.getString("summary");
-
-                getRequestList().add(new Requests(id,userid,title,field,timelimit,reqdate,city,budget,summary));
+                    
+                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());

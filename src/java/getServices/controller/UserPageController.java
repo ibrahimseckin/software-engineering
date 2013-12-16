@@ -18,6 +18,7 @@ import javax.faces.model.SelectItem;
 @ManagedBean(name = "userpage")
 @ViewScoped
 public class UserPageController {
+
     private Requests request = new Requests();
     private boolean opened;
     private User user;
@@ -29,19 +30,22 @@ public class UserPageController {
     public UserPageController() throws Exception {
         requestList = new ArrayList<Requests>();
         userdao = new UserDao();
-        Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        Session session =  (Session)sessionMap.get("session");
-        if(session != null){
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        Session session = (Session) sessionMap.get("session");
+        if (session != null) {
             user = userdao.getOneUser(session.getUserId());
         }
     }
-    
+
     public void openRequestTab() throws Exception {
-        if(!opened){
+        if (!opened) {
             requestdao = new RequestDao();
-            requestList = requestdao.getRequest();
-            }
-        opened=true;
+            Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            Session session = (Session) sessionMap.get("session");
+            int userId = session.getUserId();
+            requestList = requestdao.getRequest(userId);
+        }
+        opened = true;
     }
 
     public List<Requests> getRequestList() {
@@ -85,12 +89,14 @@ public class UserPageController {
     public User getUser() {
         return user;
     }
-    
-    public void authorize(boolean loggedIn){
-    if(!loggedIn) try {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
-    } catch (IOException ex) {
-        java.util.logging.Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+
+    public void authorize(boolean loggedIn) {
+        if (!loggedIn) {
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
