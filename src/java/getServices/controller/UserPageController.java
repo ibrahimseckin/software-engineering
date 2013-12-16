@@ -1,12 +1,15 @@
 package getServices.controller;
 
+import getServices.dao.OfferDao;
 import getServices.dao.ProviderDao;
 import getServices.dao.RequestDao;
 import getServices.dao.UserDao;
+import getServices.model.Offers;
 import getServices.model.Provider;
 import getServices.model.Requests;
 import getServices.model.Session;
 import getServices.model.User;
+import static getServices.util.Logger.logIt;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +30,23 @@ public class UserPageController {
     private Provider provider;
     private List<Requests> requestList;
     private List<Requests> filteredRequestList;
+    private List<Offers> offerList;
+    private List<Offers> filteredOfferList;
     RequestDao requestdao;
+    OfferDao offerdao;
     UserDao userdao;
     ProviderDao providerdao;
+    Map<String, Object> sessionMap;
+    Session session;
 
     public UserPageController() throws Exception {
+        opened = false;
         requestList = new ArrayList<Requests>();
         userdao = new UserDao();
         provider = new Provider();
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        Session session = (Session) sessionMap.get("session");
+        providerdao = new ProviderDao();
+        sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        session = (Session) sessionMap.get("session");
         if (session != null) {
             if(session.isIsUser()){
             user = userdao.getOneUser(session.getUserId());
@@ -50,10 +60,19 @@ public class UserPageController {
     public void openRequestTab() throws Exception {
         if (!opened) {
             requestdao = new RequestDao();
-            Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-            Session session = (Session) sessionMap.get("session");
+            //Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+            //Session session = (Session) sessionMap.get("session");
             int userId = session.getUserId();
             requestList = requestdao.getRequest(userId);
+        }
+        opened = true;
+    }
+    
+    public void openRequestTab2() throws Exception {
+        logIt("openRequestTab2 basla");
+        if (!opened) {
+            offerdao = new OfferDao();
+            offerList = offerdao.getOffers(session.getUserId());
         }
         opened = true;
     }
@@ -108,5 +127,47 @@ public class UserPageController {
                 java.util.logging.Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    /**
+     * @return the provider
+     */
+    public Provider getProvider() {
+        return provider;
+    }
+
+    /**
+     * @param provider the provider to set
+     */
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    /**
+     * @return the offerList
+     */
+    public List<Offers> getOfferList() {
+        return offerList;
+    }
+
+    /**
+     * @param offerList the offerList to set
+     */
+    public void setOfferList(List<Offers> offerList) {
+        this.offerList = offerList;
+    }
+
+    /**
+     * @return the filteredOfferList
+     */
+    public List<Offers> getFilteredOfferList() {
+        return filteredOfferList;
+    }
+
+    /**
+     * @param filteredOfferList the filteredOfferList to set
+     */
+    public void setFilteredOfferList(List<Offers> filteredOfferList) {
+        this.filteredOfferList = filteredOfferList;
     }
 }
