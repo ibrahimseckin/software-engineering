@@ -6,16 +6,17 @@ public class Offers {
     private int providerId;
     private int price;
     private String exp;
+    private boolean selected;
     
     public Offers(){}
     
-    public Offers(int requestId, int providerId, int price, String exp){
-
-        this.requestId =  requestId;
+    public Offers(int id, int requestId, int providerId, int price, String exp, boolean selected){
+        this.id = id;
+        this.requestId = requestId;
         this.providerId =  providerId;
         this.price =  price;
         this.exp = exp;
-    
+        this.selected = selected;
     }
     
     public int getId(){
