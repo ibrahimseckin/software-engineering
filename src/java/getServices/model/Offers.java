@@ -57,4 +57,18 @@ public class Offers {
     public void setExp(String exp){
         this.exp = exp;    
     } 
+
+    /**
+     * @return the selected
+     */
+    public boolean isSelected() {
+        return selected;
+    }
+
+    /**
+     * @param selected the selected to set
+     */
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 }

@@ -6,13 +6,16 @@
                 template="template.xhtml">
 
     <ui:define name="title">
-        <title> User Page </title>
+        <title> Profile Page </title>
     </ui:define>
     <ui:define name="metadata">
         #{navbar.setActive(4)}
         #{userpage.authorize(navbar.loggedIn)}
     </ui:define>
+    
     <ui:define name="content">
+        <p:outputPanel rendered="#{navbar.isUser}">
+            
         <h3 class="page-header col-sm-offset-1">#{userpage.user.username}</h3>
         <div class ="col-sm-8 col-sm-offset-1">
             
@@ -70,8 +73,65 @@
                                 </h:form>
                          </p:tab>  
                 </p:accordionPanel>  
-
-         
         </div>
+        </p:outputPanel>
+    <p:outputPanel rendered="#{!navbar.isUser}">
+        
+        <h3 class="page-header col-sm-offset-1">#{userpage.provider.username}</h3>
+        <div class ="col-sm-8 col-sm-offset-1">
+            
+                 
+                 <p:accordionPanel dynamic="true" cache="true" activeIndex="-1">
+                     <p:ajax event="tabChange" listener="#{userpage.openRequestTab2()}"/>
+                     <p:tab title="Show offers by this provider">  
+                         <h:form styleClass="form-horizontal">
+                             <p:growl id="growl3" showDetail="true" life="3000" />
+                <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable2" var="providerOffer" value="#{userpage.offerList}" widgetVar="offerTable"
+                             paginator="true" rows="20"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="10,20,30"
+                             paginatorPosition="bottom"
+                             emptyMessage="No request found with given criteria" filteredValue="#{userpage.filteredOfferList}"
+                             >
+                    <f:facet name="header2" > 
+                        <p:outputPanel style="float:right; margin-top: 5px; ">  
+                            <h:outputText value="Search  " />  
+                            <p:inputText id="globalFilter2" onkeyup="offerTable.filter()"   style="height: 30px" />  
+                        </p:outputPanel>  
+                    </f:facet> 
+
+                    <p:column   filterBy="requestId" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="requestIdColumn" headerText="Request" sortBy="#{providerOffer.requestId}" >
+                        <h:outputText value="#{providerOffer.requestId}" />
+                    </p:column>
+
+                    <p:column   filterBy="price" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="price"   headerText="price" sortBy="#{providerOffer.price}" >  
+                        <h:outputText value="#{providerOffer.price}" />  
+                    </p:column>  
+
+                    <p:column   filterBy="explanation" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="explanation"   headerText="explanation" sortBy="#{providerOffer.exp}">  
+                        <h:outputText value="#{providerOffer.exp}" />  
+                    </p:column>
+                    
+                    <p:column id="selected"   headerText="selected" sortBy="#{providerOffer.selected}">  
+                        <h:outputText value="#{providerOffer.selected}" />  
+                    </p:column>
+
+                </p:dataTable> 
+                                </h:form>
+                         </p:tab>  
+                </p:accordionPanel>  
+        </div>
+        
+        
+    </p:outputPanel>
     </ui:define>
 </ui:composition>

@@ -25,6 +25,7 @@ public class ProviderDao extends DaoConnect {
     PreparedStatement pstatement = null;
     Statement statement;
     ResultSet result;
+    private Provider provider;
     
     private List<String> fieldList;
     private List<Provider> providerList;
@@ -87,7 +88,7 @@ public class ProviderDao extends DaoConnect {
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
-logIt("sdfzxc");
+            logIt("sdfzxc");
             while (result.next()) {
                 logIt("sdf");
                 int id = result.getInt("id");
@@ -115,7 +116,9 @@ logIt("sdfzxc");
     }
         
         public Provider getOneProvider(int inputId) {
-        Provider provider = new Provider();
+            logIt("getOneprovider e girdi");
+            provider = new Provider();
+        
         try {
             String query = "SELECT id,pname,phoneno,email,address,city,rate,username,resume from (providers) "+
                     "where id=?";
@@ -124,22 +127,36 @@ logIt("sdfzxc");
             result = pstatement.executeQuery();
             
             while (result.next()) {
-                provider.setId(result.getInt("id"));
-                provider.setPname(result.getString("pname"));
-                provider.setPhoneNumber(result.getString("phoneno"));
-                provider.setEmail(result.getString("email"));
-                provider.setAddress(result.getString("address"));
-                provider.setCity(result.getString("city"));
-                provider.setRate(result.getDouble("rate"));
-                provider.setUsername(result.getString("username"));
-                provider.setResume(result.getString("resume"));
+                getProvider().setId(result.getInt("id"));
+                getProvider().setPname(result.getString("pname"));
+                getProvider().setPhoneNumber(result.getString("phoneno"));
+                getProvider().setEmail(result.getString("email"));
+                getProvider().setAddress(result.getString("address"));
+                getProvider().setCity(result.getString("city"));
+                getProvider().setRate(result.getDouble("rate"));
+                getProvider().setUsername(result.getString("username"));
+                getProvider().setResume(result.getString("resume"));
                 
             }
         } 
         catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
+        return getProvider();
+    }
+
+    /**
+     * @return the provider
+     */
+    public Provider getProvider() {
         return provider;
+    }
+
+    /**
+     * @param provider the provider to set
+     */
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
     
     

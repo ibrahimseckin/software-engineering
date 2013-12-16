@@ -72,6 +72,31 @@ public class OfferDao extends DaoConnect {
         }
         return this.offersList;
     }
+   
+   public List<Offers> getOffers(int providerId) {
+        try {
+            this.offersList = new ArrayList<Offers>();
+            String query = "SELECT id,requestid,providerid,price,exp,accepted from (offers) where providerid = ? ";
+
+            pstatement = conn.prepareStatement(query);
+            pstatement.setInt(1, providerId);
+            result = pstatement.executeQuery();
+
+            if (result.next()) {
+                int id = result.getInt("id");
+                int requestid = result.getInt("requestid");
+                int providerid = result.getInt("providerid");
+                int price = result.getInt("price");
+                String exp = result.getString("exp");
+                boolean selected = result.getBoolean("accepted");
+
+                this.offersList.add(new Offers(id, requestid, providerid, price, exp, selected));
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return this.offersList;
+    }
     
     public List<Offers> getOffersToRequest(int requestid){
         try {
