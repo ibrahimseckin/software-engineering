@@ -6,6 +6,8 @@
 
 package getServices.controller;
 
+import getServices.dao.OfferDao;
+import getServices.dao.ProviderDao;
 import getServices.dao.RequestDao;
 import getServices.dao.UserDao;
 import getServices.model.Offers;
@@ -24,17 +26,22 @@ public class RequestDetailsController {
     private List<Offers> offerList;
     private final RequestDao requestdao;
     private final UserDao userdao;
+    private final OfferDao offerdao;
+    private final ProviderDao providerdao;
     private int passedParameter;
     
     public RequestDetailsController() throws Exception {
         //logIt("moduleController constructor");
         int userid;
         requestdao = new RequestDao();
+        offerdao = new OfferDao();
+        providerdao = new ProviderDao();
         this.passedParameter = getPassedParameter();
-        request = requestdao.getOneRequest(getPassedParameter());
+        request = requestdao.getOneRequest(passedParameter);
         userid = request.getUserid();
         userdao = new UserDao();
         user = userdao.getOneUser(userid);
+        offerList = offerdao.getOffersToRequest(request.getId());
     }
     
 
