@@ -44,7 +44,91 @@
 
                 <div class="form-group">
                     <h:outputLabel for="summary" value="Summary" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputText id="summary" value="#{requestBean.request.summary}" styleClass="form-control"/>
+                    <div class="col-sm-6"><p:selectOneMenu id="selectmenu" value="#{register.user.city}">  
+<!--<f:selectItem itemLabel="Select One" itemValue="" />-->
+<f:selectItem itemLabel="İstanbul" itemValue="İstanbul" />
+<f:selectItem itemLabel="Adana" itemValue="Adana" />
+<f:selectItem itemLabel="Adiyaman" itemValue="Adiyaman" />
+<f:selectItem itemLabel="Afyonkarahisar" itemValue="Afyonkarahisar" />
+<f:selectItem itemLabel="Agri" itemValue="Agri" />
+<f:selectItem itemLabel="Aksaray" itemValue="Aksaray" />
+<f:selectItem itemLabel="Amasya" itemValue="Amasya" />
+<f:selectItem itemLabel="Ankara" itemValue="Ankara" />
+<f:selectItem itemLabel="Antalya" itemValue="Antalya" />
+<f:selectItem itemLabel="Ardahan" itemValue="Ardahan" />
+<f:selectItem itemLabel="Artvin" itemValue="Artvin" />
+<f:selectItem itemLabel="Aydin" itemValue="Aydin" />
+<f:selectItem itemLabel="Balikesir" itemValue="Balikesir" />
+<f:selectItem itemLabel="Bartin" itemValue="Bartin" />
+<f:selectItem itemLabel="Batman" itemValue="Batman" />
+<f:selectItem itemLabel="Bayburt" itemValue="Bayburt" />
+<f:selectItem itemLabel="Bilecik" itemValue="Bilecik" />
+<f:selectItem itemLabel="Bingol" itemValue="Bingol" />
+<f:selectItem itemLabel="Bitlis" itemValue="Bitlis" />
+<f:selectItem itemLabel="Bolu" itemValue="Bolu" />
+<f:selectItem itemLabel="Burdur" itemValue="Burdur" />
+<f:selectItem itemLabel="Bursa" itemValue="Bursa" />
+<f:selectItem itemLabel="Canakkale" itemValue="Canakkale" />
+<f:selectItem itemLabel="Cankiri" itemValue="Cankiri" />
+<f:selectItem itemLabel="Corum" itemValue="Corum" />
+<f:selectItem itemLabel="Denizli" itemValue="Denizli" />
+<f:selectItem itemLabel="Diyarbakir" itemValue="Diyarbakir" />
+<f:selectItem itemLabel="Duzce" itemValue="Duzce" />
+<f:selectItem itemLabel="Edirne" itemValue="Edirne" />
+<f:selectItem itemLabel="Elazig" itemValue="Elazig" />
+<f:selectItem itemLabel="Erzincan" itemValue="Erzincan" />
+<f:selectItem itemLabel="Erzurum" itemValue="Erzurum" />
+<f:selectItem itemLabel="Eskisehir" itemValue="Eskisehir" />
+<f:selectItem itemLabel="Gaziantep" itemValue="Gaziantep" />
+<f:selectItem itemLabel="Giresun" itemValue="Giresun" />
+<f:selectItem itemLabel="Gumushane" itemValue="Gumushane" />
+<f:selectItem itemLabel="Hakkari" itemValue="Hakkari" />
+<f:selectItem itemLabel="Hatay" itemValue="Hatay" />
+<f:selectItem itemLabel="Igdir" itemValue="Igdir" />
+<f:selectItem itemLabel="Isparta" itemValue="Isparta" />
+<f:selectItem itemLabel="Istanbul" itemValue="Istanbul" />
+<f:selectItem itemLabel="Izmir" itemValue="Izmir" />
+<f:selectItem itemLabel="Kahramanmaras" itemValue="Kahramanmaras" />
+<f:selectItem itemLabel="Karabuk" itemValue="Karabuk" />
+<f:selectItem itemLabel="Karaman" itemValue="Karaman" />
+<f:selectItem itemLabel="Kars" itemValue="Kars" />
+<f:selectItem itemLabel="Kastamonu" itemValue="Kastamonu" />
+<f:selectItem itemLabel="Kayseri" itemValue="Kayseri" />
+<f:selectItem itemLabel="Kilis" itemValue="Kilis" />
+<f:selectItem itemLabel="Kirikkale" itemValue="Kirikkale" />
+<f:selectItem itemLabel="Kirklareli" itemValue="Kirklareli" />
+<f:selectItem itemLabel="Kirsehir" itemValue="Kirsehir" />
+<f:selectItem itemLabel="Kocaeli" itemValue="Kocaeli" />
+<f:selectItem itemLabel="Konya" itemValue="Konya" />
+<f:selectItem itemLabel="Kutahya" itemValue="Kutahya" />
+<f:selectItem itemLabel="Malatya" itemValue="Malatya" />
+<f:selectItem itemLabel="Manisa" itemValue="Manisa" />
+<f:selectItem itemLabel="Mardin" itemValue="Mardin" />
+<f:selectItem itemLabel="Mersin" itemValue="Mersin" />
+<f:selectItem itemLabel="Mugla" itemValue="Mugla" />
+<f:selectItem itemLabel="Mus" itemValue="Mus" />
+<f:selectItem itemLabel="Nevsehir" itemValue="Nevsehir" />
+<f:selectItem itemLabel="Nigde" itemValue="Nigde" />
+<f:selectItem itemLabel="Ordu" itemValue="Ordu" />
+<f:selectItem itemLabel="Osmaniye" itemValue="Osmaniye" />
+<f:selectItem itemLabel="Rize" itemValue="Rize" />
+<f:selectItem itemLabel="Sakarya" itemValue="Sakarya" />
+<f:selectItem itemLabel="Samsun" itemValue="Samsun" />
+<f:selectItem itemLabel="Sanliurfa" itemValue="Sanliurfa" />
+<f:selectItem itemLabel="Siirt" itemValue="Siirt" />
+<f:selectItem itemLabel="Sinop" itemValue="Sinop" />
+<f:selectItem itemLabel="Sirnak" itemValue="Sirnak" />
+<f:selectItem itemLabel="Sivas" itemValue="Sivas" />
+<f:selectItem itemLabel="Tekirdag" itemValue="Tekirdag" />
+<f:selectItem itemLabel="Tokat" itemValue="Tokat" />
+<f:selectItem itemLabel="Trabzon" itemValue="Trabzon" />
+<f:selectItem itemLabel="Tunceli" itemValue="Tunceli" />
+<f:selectItem itemLabel="Usak" itemValue="Usak" />
+<f:selectItem itemLabel="Van" itemValue="Van" />
+<f:selectItem itemLabel="Yalova" itemValue="Yalova" />
+<f:selectItem itemLabel="Yozgat" itemValue="Yozgat" />
+<f:selectItem itemLabel="Zonguldak" itemValue="Zonguldak" />
+                    </p:selectOneMenu>
                     </div></div>
 
 
