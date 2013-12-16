@@ -57,7 +57,7 @@ public class LoginController implements Serializable {
             loggedIn = true;
         }
 
-        if (loggedIn) {
+        if (loggedIn == true) {
             logIt("basariliya girdi");
             session.setUserId(userId);
             session.setIsLoggedIn(true);
@@ -69,11 +69,16 @@ public class LoginController implements Serializable {
             return "userpage?faces-redirect=true";
 
         } else {
-            int providerId = providerdao.getProviderId(user.getUsername(), user.getPassword());
+            logIt("else'e girdi");
+            int providerId = 0;
+            providerdao = new ProviderDao();
+            providerId = providerdao.getProviderId(user.getUsername(), user.getPassword());
+            logIt("cikti");
             if (providerId != 0) {
                 loggedIn = true;
+
             }
-            if (loggedIn) {
+            if (loggedIn == true) {
                 logIt("basariliya girdi");
                 session.setUserId(providerId);
                 session.setIsLoggedIn(true);
@@ -83,10 +88,16 @@ public class LoginController implements Serializable {
                 Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
                 sessionMap.put("session", session);
                 return "userpage?faces-redirect=true";
-            }
-            else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Unknown login, try again"));
-            return "index?faces-redirect=true";
+            } else {
+                logIt("basarisiza girdi");
+                FacesMessage message = new FacesMessage();
+                message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                message.setSummary("Unknown login!");
+                message.setDetail("ERROR MESSAGE");
+                FacesContext.getCurrentInstance().addMessage("formId:form",message);
+            //FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unknown login.Try again",null);
+                //return "index?faces-redirect=true";
+                return "error";
             }
         }
 

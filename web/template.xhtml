@@ -36,13 +36,13 @@
           <ul class="nav navbar-nav">
             <li class="#{navbar.active1}"><h:link outcome="index" value="Home" /></li>
             <li class="#{navbar.active2}"><h:link outcome="request" value="Requests" /></li>
-            <li class="#{navbar.active3}"><h:link outcome="register" value="Register" /></li>
-            <li class="#{navbar.active4}"><h:link outcome="userpage" value="Userpage" /></li>
+            <li class="#{navbar.active3}"><h:link outcome="register" value="Register" rendered="#{!navbar.loggedIn}"/></li>
+            <li class="#{navbar.active4}"><h:link outcome="userpage" value="Userpage" rendered="#{navbar.loggedIn}"/></li>
           </ul>
             
           <h:form styleClass="navbar-form navbar-right">
               <div class="form-group">
-            <p:inputText value="#{login.user.username}"
+                  <p:inputText value="#{login.user.username}" 
                                  id="searching" label="search" styleClass="form-control input-sm"/>
             <p:watermark for="searching" value="Search for services" />
             </div>
@@ -50,7 +50,7 @@
                                      action="#{login.buttonLogin}" styleClass="btn btn-success btn-xs"/>
             </h:form>
           <ul class="nav navbar-nav navbar-left">
-            <li class="#{navbar.active5}"><h:link outcome="login" value="Login" /></li>
+              <li class="#{navbar.active5}"><h:link outcome="login" value="Login" rendered="#{!navbar.loggedIn}"/></li>
           </ul>
         </div><!--/.nav-collapse -->
        </div>

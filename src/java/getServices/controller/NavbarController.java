@@ -6,8 +6,12 @@
 
 package getServices.controller;
 
+import getServices.model.Session;
+import static getServices.util.Logger.logIt;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -18,7 +22,9 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 
 public class NavbarController {
-    
+    private boolean isUser;
+    private int userid;
+    private boolean loggedIn;
     private String active1;
     private String active2;
     private String active3;
@@ -27,12 +33,25 @@ public class NavbarController {
     private String active6;
     
     public NavbarController() {
+        userid=0;
+        loggedIn=false;
+        isUser =false;
         active1="";
         active2="";
         active3="";
         active4="";
         active5="";
         active6="";
+        Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        Session session =  (Session)sessionMap.get("session");
+        if(session != null){
+            userid = session.getUserId();
+            loggedIn = session.isIsLoggedIn();
+            isUser = session.isIsUser();
+        }
+        else{
+        
+        }
     }
     
     public void setActive(int i){
@@ -97,6 +116,32 @@ public class NavbarController {
     public void setActive6(String active6) {
         this.active6 = active6;
     }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public boolean isIsUser() {
+        return isUser;
+    }
+
+    public void setIsUser(boolean isUser) {
+        this.isUser = isUser;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+    
+    
     
     
     
