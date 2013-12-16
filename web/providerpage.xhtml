@@ -32,13 +32,17 @@
                     </p:column>
                     
                 <p:column id="detailsColumn" headerText="Link" sortBy="" >
-                        <h:link value="Details" outcome="index" />
+                    <h:link value="Details" outcome="providerDetails?id=#{userProvider.id}" />
                     </p:column>
              
                     <p:column id="nameColumn" headerText="Provider Name"  >
                         <h:outputText value="#{userProvider.pname}" />
                     </p:column>
 
+                    <p:column id="cityColumn" headerText="City"  >
+                        <h:outputText value="#{userProvider.city}" />
+                    </p:column>
+             
                 </p:dataTable> 
     </h:form>
     </ui:define>

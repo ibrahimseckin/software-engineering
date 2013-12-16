@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="template.xhtml">
+
+    <ui:define name="title">
+        <title> Provider Details </title>
+    </ui:define>
+
+    <ui:define name="metadata">
+        #{navbar.setActive(53)}
+    </ui:define>
+    <ui:define name="content">
+        <h3 class="page-header col-sm-offset-1"><h:outputText value="#{detailsProvider.provider.pname}"/></h3>
+        <div class ="col-sm-4 col-sm-offset-1">
+            <p> City: <h:outputText value="#{detailsProvider.provider.city}"/></p>
+            <p> Address: <h:outputText value="#{detailsProvider.provider.address}"/></p>
+            <p> Phone Number: <h:outputText value="#{detailsProvider.provider.phoneNumber}"/></p>
+            <p> E-mail: <h:outputText value="#{detailsProvider.provider.email}"/></p>
+            <p> Rating: <h:outputText value="#{detailsProvider.provider.rate}"/></p>
+        </div>
+
+    </ui:define>
+    
+    
+</ui:composition>
