@@ -1,68 +1,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
-<f:view contentType="text/html" id="fview">
+    <f:view contentType="text/html" id="fview">
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <ui:insert name="title" />
-        <ui:debug />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <!-- Bootstrap -->
-        <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="#{request.contextPath}/css/navbar.css" rel="stylesheet"/>
-        
-        <ui:insert name="metadata" />
-    </h:head>
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <ui:insert name="title" />
+            <ui:debug />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <!-- Bootstrap -->
+            <link href="#{request.contextPath}/css/bootstrap.min.css" rel="stylesheet"/>
+            <link href="#{request.contextPath}/css/navbar.css" rel="stylesheet"/>
 
-    <h:body onload="statusDialog.hide();" style="padding-top: 70px; padding-bottom: 70px;">
-        <div class="navbar navbar-fixed-top navbar-default" role="navigation">
-       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">getServices</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="#{navbar.active1}"><h:link outcome="index" value="Home" /></li>
-            <li class="#{navbar.active2}"><h:link outcome="request" value="Requests" /></li>
-            <li class="#{navbar.active3}"><h:link outcome="register" value="Register" rendered="#{!navbar.loggedIn}"/></li>
-            <li class="#{navbar.active4}"><h:link outcome="userpage" value="Userpage" rendered="#{navbar.loggedIn}"/></li>
-          </ul>
-            
-          <h:form styleClass="navbar-form navbar-right">
-              <div class="form-group">
-                  <p:inputText value="#{login.user.username}" 
-                                 id="searching" label="search" styleClass="form-control input-sm"/>
-            <p:watermark for="searching" value="Search for services" />
+            <ui:insert name="metadata" />
+        </h:head>
+
+        <h:body onload="statusDialog.hide();" style="padding-top: 70px; padding-bottom: 70px;">
+            <div class="navbar navbar-fixed-top navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">getServices</a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="#{navbar.active1}"><h:link outcome="index" value="Home" /></li>
+                            <li class="#{navbar.active2}"><h:link outcome="request" value="Requests" /></li>
+                            <li class="#{navbar.active3}"><h:link outcome="register" value="Register" rendered="#{!navbar.loggedIn}"/></li>
+                            <li class="#{navbar.active4}"><h:link outcome="userpage" value="Userpage" rendered="#{navbar.loggedIn}"/></li>
+                        </ul>
+
+                        <h:form styleClass="navbar-form navbar-right">
+                            <div class="form-group">
+                                <p:inputText value="#{login.user.username}" 
+                                             id="searching" label="search" styleClass="form-control input-sm"/>
+                                <p:watermark for="searching" value="Search for services" />
+                            </div>
+                            <p:commandButton id="searchButton" value="Search" title="Search" update="" 
+                                             action="#{login.buttonLogin}" styleClass="btn btn-success btn-xs"/>
+                            <p:commandButton id="logoutButton" value="Logout" title="Logout" update="" 
+                                             action="#{login.logout}" styleClass="btn btn-success btn-xs"/>
+                        </h:form>
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="#{navbar.active5}"><h:link outcome="login" value="Login" rendered="#{!navbar.loggedIn}"/></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
             </div>
-            <p:commandButton id="searchButton" value="Search" title="Search" update="" 
-                                     action="#{login.buttonLogin}" styleClass="btn btn-success btn-xs"/>
-            </h:form>
-          <ul class="nav navbar-nav navbar-left">
-              <li class="#{navbar.active5}"><h:link outcome="login" value="Login" rendered="#{!navbar.loggedIn}"/></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-       </div>
-      </div>
-        
-        <div class="container">
-            <ui:insert name="content" />
-        </div>
-        
-        <h:outputScript library="primefaces" name="jquery/jquery.js" />
-            <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
-    </h:body>
 
-</f:view>
+            <div class="container">
+                <ui:insert name="content" />
+            </div>
+
+            <h:outputScript library="primefaces" name="jquery/jquery.js" />
+            <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+        </h:body>
+
+    </f:view>
 </html>

@@ -94,13 +94,23 @@ public class LoginController implements Serializable {
                 message.setSeverity(FacesMessage.SEVERITY_ERROR);
                 message.setSummary("Unknown login!");
                 message.setDetail("ERROR MESSAGE");
-                FacesContext.getCurrentInstance().addMessage("formId:form",message);
-            //FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unknown login.Try again",null);
+                FacesContext.getCurrentInstance().addMessage("formId:form", message);
+                //FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unknown login.Try again",null);
                 //return "index?faces-redirect=true";
-                return "error";
+                return null;
             }
         }
 
+    }
+
+    public String logout() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        Session session =  (Session)sessionMap.get("session");
+        session.setUserId(0);
+        session.setIsUser(false);
+        session.setIsLoggedIn(false);
+        sessionMap.clear();//session temizlendi
+        return "index?faces-redirect=true";
     }
 
     /**
