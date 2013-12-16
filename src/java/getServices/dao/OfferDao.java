@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package getServices.dao;
 
 import static getServices.dao.DaoConnect.conn;
@@ -16,10 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author samil.can
- */
 public class OfferDao extends DaoConnect {
     
     PreparedStatement pstatement = null;
@@ -60,22 +50,22 @@ public class OfferDao extends DaoConnect {
         try {
             this.offersList = new ArrayList<Offers>();
             //logIt("sorgu yapti");
-            String query = "SELECT id,requestid,providerid,price,exp from (offers) ";
+            String query = "SELECT id,requestid,providerid,price,exp,selected from (offers) ";
             //logIt("sorgu calisti");
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
 
             while (result.next()) {
-                //logIt("while'a girdi");
-                //int dbUserId = result.getInt("userid");
                 int requestId = result.getInt("requestid");
                 int providerId = result.getInt("providerid");
                 int price = result.getInt("price");
                 String exp = result.getString("exp");
+                boolean selected = result.getBoolean("selected");
+                int id = result.getInt("id");
                         
                 //if(dbUserId == userid)
-                this.offersList.add(new Offers(requestId,providerId,price,exp));
+                this.offersList.add(new Offers(id,requestId,providerId,price,exp,selected));
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
@@ -83,5 +73,27 @@ public class OfferDao extends DaoConnect {
         return this.offersList;
     }
     
+    public List<Offers> getOffersToRequest(int requestid){
+        try {
+            this.offersList = new ArrayList<Offers>();
+            String query = "SELECT * from requests where id="+requestid;
+
+            statement = conn.createStatement();
+            result = statement.executeQuery(query);
+
+            while (result.next()) {
+                int requestId = result.getInt("requestid");
+                int providerId = result.getInt("providerid");
+                int price = result.getInt("price");
+                String exp = result.getString("exp");
+                boolean selected = result.getBoolean("selected");
+                int id = result.getInt("id");
+                this.offersList.add(new Offers(id,requestId,providerId,price,exp,selected));
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return this.offersList;
+    }
     
 }
