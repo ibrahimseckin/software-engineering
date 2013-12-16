@@ -136,7 +136,8 @@ public class RequestDao extends DaoConnect {
         return getRequestList();
     }
 
-    public List<String> getList() {
+    public List<String> getListField() {
+        logIt("getListField calisti");
         try {
             setFieldList(new ArrayList<String>());
             String query = "SELECT name FROM (fields) ";
@@ -146,11 +147,13 @@ public class RequestDao extends DaoConnect {
 
             while (result.next()) {
                 String field = result.getString("name");
+                logIt("field:" + field);
                 getFieldList().add(field);
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
+        logIt("getFieldList cikti");
         return getFieldList();
     }
 

@@ -1,9 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://java.sun.com/jsf/core"
-    template="template.xhtml">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="template.xhtml">
 
     <ui:define name="title">
         <title> Register Page </title>
@@ -14,274 +14,290 @@
     </ui:define>
     <ui:define name="content">
         <h3 class="page-header">Register and start looking for services</h3>
-        
+
         <div class ="col-sm-8">
             <h3>Select user type:</h3>
-          <p:tabView effect="blind" effectDuration="normal">
-               
-            <p:tab title="Normal User">
-                <div class="well" style="padding-bottom: 70px;">
+            <p:tabView effect="blind" effectDuration="normal">
 
-        <h:form styleClass="form-horizontal">
-            <p:growl id="growl" showDetail="true" life="3000" /> 
-            <h4>Normal User</h4>
-                <div class="form-group">
-                <h:outputLabel for="firstname" value="Firstname" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6">
-                <p:inputText id="firstname" value="#{register.user.firstname}" styleClass="form-control"/>
-                </div></div>
-                <div class="form-group">
-                <h:outputLabel for="surname" value="Surname" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputText id="surname" value="#{register.user.surname}" styleClass="form-control"/>
-                </div></div>
-            <div class="form-group">
-                <h:outputLabel for="phoneno" value="Phone Number" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputMask id="phoneno" value="#{register.user.phoneNumber}" mask="(999) 999-9999" styleClass="form-control"/>
-                </div></div>
-            <div class="form-group">
-                <h:outputLabel for="email" value="Email" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputText id="email" value="#{register.user.email}" styleClass="form-control"/>
-                </div></div>
-            <div class="form-group">
-                <h:outputLabel for="address" value="Address" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputText id="address" value="#{register.user.address}" styleClass="form-control"/>
-                </div></div>
-            <div class="form-group">
-                <h:outputLabel for="age" value="Age" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputText id="age" value="#{register.user.age}" styleClass="form-control"/>
-                </div></div>
-            <div class="form-group">
-                <h:outputLabel for="city" value="City" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6">
-                    <p:selectOneMenu id="selectmenu" value="#{register.user.city}">  
-<!--<f:selectItem itemLabel="Select One" itemValue="" />-->
-<f:selectItem itemLabel="İstanbul" itemValue="İstanbul" />
-<f:selectItem itemLabel="Adana" itemValue="Adana" />
-<f:selectItem itemLabel="Adiyaman" itemValue="Adiyaman" />
-<f:selectItem itemLabel="Afyonkarahisar" itemValue="Afyonkarahisar" />
-<f:selectItem itemLabel="Agri" itemValue="Agri" />
-<f:selectItem itemLabel="Aksaray" itemValue="Aksaray" />
-<f:selectItem itemLabel="Amasya" itemValue="Amasya" />
-<f:selectItem itemLabel="Ankara" itemValue="Ankara" />
-<f:selectItem itemLabel="Antalya" itemValue="Antalya" />
-<f:selectItem itemLabel="Ardahan" itemValue="Ardahan" />
-<f:selectItem itemLabel="Artvin" itemValue="Artvin" />
-<f:selectItem itemLabel="Aydin" itemValue="Aydin" />
-<f:selectItem itemLabel="Balikesir" itemValue="Balikesir" />
-<f:selectItem itemLabel="Bartin" itemValue="Bartin" />
-<f:selectItem itemLabel="Batman" itemValue="Batman" />
-<f:selectItem itemLabel="Bayburt" itemValue="Bayburt" />
-<f:selectItem itemLabel="Bilecik" itemValue="Bilecik" />
-<f:selectItem itemLabel="Bingol" itemValue="Bingol" />
-<f:selectItem itemLabel="Bitlis" itemValue="Bitlis" />
-<f:selectItem itemLabel="Bolu" itemValue="Bolu" />
-<f:selectItem itemLabel="Burdur" itemValue="Burdur" />
-<f:selectItem itemLabel="Bursa" itemValue="Bursa" />
-<f:selectItem itemLabel="Canakkale" itemValue="Canakkale" />
-<f:selectItem itemLabel="Cankiri" itemValue="Cankiri" />
-<f:selectItem itemLabel="Corum" itemValue="Corum" />
-<f:selectItem itemLabel="Denizli" itemValue="Denizli" />
-<f:selectItem itemLabel="Diyarbakir" itemValue="Diyarbakir" />
-<f:selectItem itemLabel="Duzce" itemValue="Duzce" />
-<f:selectItem itemLabel="Edirne" itemValue="Edirne" />
-<f:selectItem itemLabel="Elazig" itemValue="Elazig" />
-<f:selectItem itemLabel="Erzincan" itemValue="Erzincan" />
-<f:selectItem itemLabel="Erzurum" itemValue="Erzurum" />
-<f:selectItem itemLabel="Eskisehir" itemValue="Eskisehir" />
-<f:selectItem itemLabel="Gaziantep" itemValue="Gaziantep" />
-<f:selectItem itemLabel="Giresun" itemValue="Giresun" />
-<f:selectItem itemLabel="Gumushane" itemValue="Gumushane" />
-<f:selectItem itemLabel="Hakkari" itemValue="Hakkari" />
-<f:selectItem itemLabel="Hatay" itemValue="Hatay" />
-<f:selectItem itemLabel="Igdir" itemValue="Igdir" />
-<f:selectItem itemLabel="Isparta" itemValue="Isparta" />
-<f:selectItem itemLabel="Istanbul" itemValue="Istanbul" />
-<f:selectItem itemLabel="Izmir" itemValue="Izmir" />
-<f:selectItem itemLabel="Kahramanmaras" itemValue="Kahramanmaras" />
-<f:selectItem itemLabel="Karabuk" itemValue="Karabuk" />
-<f:selectItem itemLabel="Karaman" itemValue="Karaman" />
-<f:selectItem itemLabel="Kars" itemValue="Kars" />
-<f:selectItem itemLabel="Kastamonu" itemValue="Kastamonu" />
-<f:selectItem itemLabel="Kayseri" itemValue="Kayseri" />
-<f:selectItem itemLabel="Kilis" itemValue="Kilis" />
-<f:selectItem itemLabel="Kirikkale" itemValue="Kirikkale" />
-<f:selectItem itemLabel="Kirklareli" itemValue="Kirklareli" />
-<f:selectItem itemLabel="Kirsehir" itemValue="Kirsehir" />
-<f:selectItem itemLabel="Kocaeli" itemValue="Kocaeli" />
-<f:selectItem itemLabel="Konya" itemValue="Konya" />
-<f:selectItem itemLabel="Kutahya" itemValue="Kutahya" />
-<f:selectItem itemLabel="Malatya" itemValue="Malatya" />
-<f:selectItem itemLabel="Manisa" itemValue="Manisa" />
-<f:selectItem itemLabel="Mardin" itemValue="Mardin" />
-<f:selectItem itemLabel="Mersin" itemValue="Mersin" />
-<f:selectItem itemLabel="Mugla" itemValue="Mugla" />
-<f:selectItem itemLabel="Mus" itemValue="Mus" />
-<f:selectItem itemLabel="Nevsehir" itemValue="Nevsehir" />
-<f:selectItem itemLabel="Nigde" itemValue="Nigde" />
-<f:selectItem itemLabel="Ordu" itemValue="Ordu" />
-<f:selectItem itemLabel="Osmaniye" itemValue="Osmaniye" />
-<f:selectItem itemLabel="Rize" itemValue="Rize" />
-<f:selectItem itemLabel="Sakarya" itemValue="Sakarya" />
-<f:selectItem itemLabel="Samsun" itemValue="Samsun" />
-<f:selectItem itemLabel="Sanliurfa" itemValue="Sanliurfa" />
-<f:selectItem itemLabel="Siirt" itemValue="Siirt" />
-<f:selectItem itemLabel="Sinop" itemValue="Sinop" />
-<f:selectItem itemLabel="Sirnak" itemValue="Sirnak" />
-<f:selectItem itemLabel="Sivas" itemValue="Sivas" />
-<f:selectItem itemLabel="Tekirdag" itemValue="Tekirdag" />
-<f:selectItem itemLabel="Tokat" itemValue="Tokat" />
-<f:selectItem itemLabel="Trabzon" itemValue="Trabzon" />
-<f:selectItem itemLabel="Tunceli" itemValue="Tunceli" />
-<f:selectItem itemLabel="Usak" itemValue="Usak" />
-<f:selectItem itemLabel="Van" itemValue="Van" />
-<f:selectItem itemLabel="Yalova" itemValue="Yalova" />
-<f:selectItem itemLabel="Yozgat" itemValue="Yozgat" />
-<f:selectItem itemLabel="Zonguldak" itemValue="Zonguldak" />
-                    </p:selectOneMenu>
-                </div></div>
-            <div class="form-group">
-                <p:outputLabel for="uname" value="Username" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputText id="uname" value="#{register.user.username}" required="true" styleClass="form-control"/>
-                </div></div>
-            <div class="form-group">
-                <h:outputLabel for="password" value="Password" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                <div class="col-sm-6"><p:inputText id="password" value="#{register.user.password}" required="true" styleClass="form-control"/>
-                </div></div>
-            <div class="col-sm-offset-3 col-sm-6">
-                <p:commandButton id="RegisterButton" value="Register" action="#{register.buttonRegister}" update="growl"/>
-            </div>
-        </h:form>
-                </div>
-            </p:tab>
-              <p:tab title="Provider">
-                  <div class="well" style="padding-bottom: 70px;">
-              <h:form styleClass="form-horizontal">
-                  <p:growl id="growl2" showDetail="true" life="3000" /> 
-                <h4>Provider</h4>
-                <div class="form-group">
-                    <h:outputLabel for="providername" value="ProviderName" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6">
-                        <p:inputText id="providername" value="#{register.provider.pname}" styleClass="form-control"/>
-                    </div></div>
-                <div class="form-group">
-                    <h:outputLabel for="phoneno2" value="Phone Number" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputMask id="phoneno2" value="#{register.provider.phoneNumber}" mask="(999) 999-9999" styleClass="form-control"/>
-                    </div></div>
-                <div class="form-group">
-                    <h:outputLabel for="email2" value="Email" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputText id="email2" value="#{register.provider.email}" styleClass="form-control"/>
-                    </div></div>
-                <div class="form-group">
-                    <h:outputLabel for="address2" value="Address" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputText id="address2" value="#{register.provider.address}" styleClass="form-control"/>
-                    </div></div>
-                <div class="form-group">
-                    <h:outputLabel for="city2" value="City" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:selectOneMenu id="selectmenu" value="#{register.user.city}">  
-<!--<f:selectItem itemLabel="Select One" itemValue="" />-->
-<f:selectItem itemLabel="İstanbul" itemValue="İstanbul" />
-<f:selectItem itemLabel="Adana" itemValue="Adana" />
-<f:selectItem itemLabel="Adiyaman" itemValue="Adiyaman" />
-<f:selectItem itemLabel="Afyonkarahisar" itemValue="Afyonkarahisar" />
-<f:selectItem itemLabel="Agri" itemValue="Agri" />
-<f:selectItem itemLabel="Aksaray" itemValue="Aksaray" />
-<f:selectItem itemLabel="Amasya" itemValue="Amasya" />
-<f:selectItem itemLabel="Ankara" itemValue="Ankara" />
-<f:selectItem itemLabel="Antalya" itemValue="Antalya" />
-<f:selectItem itemLabel="Ardahan" itemValue="Ardahan" />
-<f:selectItem itemLabel="Artvin" itemValue="Artvin" />
-<f:selectItem itemLabel="Aydin" itemValue="Aydin" />
-<f:selectItem itemLabel="Balikesir" itemValue="Balikesir" />
-<f:selectItem itemLabel="Bartin" itemValue="Bartin" />
-<f:selectItem itemLabel="Batman" itemValue="Batman" />
-<f:selectItem itemLabel="Bayburt" itemValue="Bayburt" />
-<f:selectItem itemLabel="Bilecik" itemValue="Bilecik" />
-<f:selectItem itemLabel="Bingol" itemValue="Bingol" />
-<f:selectItem itemLabel="Bitlis" itemValue="Bitlis" />
-<f:selectItem itemLabel="Bolu" itemValue="Bolu" />
-<f:selectItem itemLabel="Burdur" itemValue="Burdur" />
-<f:selectItem itemLabel="Bursa" itemValue="Bursa" />
-<f:selectItem itemLabel="Canakkale" itemValue="Canakkale" />
-<f:selectItem itemLabel="Cankiri" itemValue="Cankiri" />
-<f:selectItem itemLabel="Corum" itemValue="Corum" />
-<f:selectItem itemLabel="Denizli" itemValue="Denizli" />
-<f:selectItem itemLabel="Diyarbakir" itemValue="Diyarbakir" />
-<f:selectItem itemLabel="Duzce" itemValue="Duzce" />
-<f:selectItem itemLabel="Edirne" itemValue="Edirne" />
-<f:selectItem itemLabel="Elazig" itemValue="Elazig" />
-<f:selectItem itemLabel="Erzincan" itemValue="Erzincan" />
-<f:selectItem itemLabel="Erzurum" itemValue="Erzurum" />
-<f:selectItem itemLabel="Eskisehir" itemValue="Eskisehir" />
-<f:selectItem itemLabel="Gaziantep" itemValue="Gaziantep" />
-<f:selectItem itemLabel="Giresun" itemValue="Giresun" />
-<f:selectItem itemLabel="Gumushane" itemValue="Gumushane" />
-<f:selectItem itemLabel="Hakkari" itemValue="Hakkari" />
-<f:selectItem itemLabel="Hatay" itemValue="Hatay" />
-<f:selectItem itemLabel="Igdir" itemValue="Igdir" />
-<f:selectItem itemLabel="Isparta" itemValue="Isparta" />
-<f:selectItem itemLabel="Istanbul" itemValue="Istanbul" />
-<f:selectItem itemLabel="Izmir" itemValue="Izmir" />
-<f:selectItem itemLabel="Kahramanmaras" itemValue="Kahramanmaras" />
-<f:selectItem itemLabel="Karabuk" itemValue="Karabuk" />
-<f:selectItem itemLabel="Karaman" itemValue="Karaman" />
-<f:selectItem itemLabel="Kars" itemValue="Kars" />
-<f:selectItem itemLabel="Kastamonu" itemValue="Kastamonu" />
-<f:selectItem itemLabel="Kayseri" itemValue="Kayseri" />
-<f:selectItem itemLabel="Kilis" itemValue="Kilis" />
-<f:selectItem itemLabel="Kirikkale" itemValue="Kirikkale" />
-<f:selectItem itemLabel="Kirklareli" itemValue="Kirklareli" />
-<f:selectItem itemLabel="Kirsehir" itemValue="Kirsehir" />
-<f:selectItem itemLabel="Kocaeli" itemValue="Kocaeli" />
-<f:selectItem itemLabel="Konya" itemValue="Konya" />
-<f:selectItem itemLabel="Kutahya" itemValue="Kutahya" />
-<f:selectItem itemLabel="Malatya" itemValue="Malatya" />
-<f:selectItem itemLabel="Manisa" itemValue="Manisa" />
-<f:selectItem itemLabel="Mardin" itemValue="Mardin" />
-<f:selectItem itemLabel="Mersin" itemValue="Mersin" />
-<f:selectItem itemLabel="Mugla" itemValue="Mugla" />
-<f:selectItem itemLabel="Mus" itemValue="Mus" />
-<f:selectItem itemLabel="Nevsehir" itemValue="Nevsehir" />
-<f:selectItem itemLabel="Nigde" itemValue="Nigde" />
-<f:selectItem itemLabel="Ordu" itemValue="Ordu" />
-<f:selectItem itemLabel="Osmaniye" itemValue="Osmaniye" />
-<f:selectItem itemLabel="Rize" itemValue="Rize" />
-<f:selectItem itemLabel="Sakarya" itemValue="Sakarya" />
-<f:selectItem itemLabel="Samsun" itemValue="Samsun" />
-<f:selectItem itemLabel="Sanliurfa" itemValue="Sanliurfa" />
-<f:selectItem itemLabel="Siirt" itemValue="Siirt" />
-<f:selectItem itemLabel="Sinop" itemValue="Sinop" />
-<f:selectItem itemLabel="Sirnak" itemValue="Sirnak" />
-<f:selectItem itemLabel="Sivas" itemValue="Sivas" />
-<f:selectItem itemLabel="Tekirdag" itemValue="Tekirdag" />
-<f:selectItem itemLabel="Tokat" itemValue="Tokat" />
-<f:selectItem itemLabel="Trabzon" itemValue="Trabzon" />
-<f:selectItem itemLabel="Tunceli" itemValue="Tunceli" />
-<f:selectItem itemLabel="Usak" itemValue="Usak" />
-<f:selectItem itemLabel="Van" itemValue="Van" />
-<f:selectItem itemLabel="Yalova" itemValue="Yalova" />
-<f:selectItem itemLabel="Yozgat" itemValue="Yozgat" />
-<f:selectItem itemLabel="Zonguldak" itemValue="Zonguldak" />
-                    </p:selectOneMenu>
-                    </div></div>
-                <div class="form-group">
-                    <h:outputLabel for="field2" value="Field" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputText id="field2" value="#{register.provider.field}" styleClass="form-control"/>
-                    </div></div>
-                <div class="form-group">
-                    <p:outputLabel for="uname2" value="Username" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputText id="uname2" value="#{register.provider.username}" required="true" styleClass="form-control"/>
-                    </div></div>
-                <div class="form-group">
-                    <h:outputLabel for="password2" value="Password" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputText id="password2" value="#{register.provider.password}" required="true" styleClass="form-control"/>
-                    </div></div>
-                <div class="col-sm-offset-3 col-sm-6">
-                    <p:commandButton id="RegisterButton2" value="Register" action="#{register.providerRegister}" update="growl2"/>
-                </div>
-            </h:form>
-                  </div>
-              </p:tab>
-          </p:tabView>
+                <p:tab title="Normal User">
+                    <div class="well" style="padding-bottom: 70px;">
+
+                        <h:form styleClass="form-horizontal" id="register">
+                            <p:growl id="growl" showDetail="true" life="3000" /> 
+                            <h4>Normal User</h4>
+                            <div class="form-group">
+                                <h:outputLabel for="firstname" value="Firstname" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <h:inputText id="firstname" value="#{register.user.firstname}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="surname" value="Surname" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><h:inputText id="surname" value="#{register.user.surname}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="phoneno" value="Phone Number" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:inputMask id="phoneno" value="#{register.user.phoneNumber}" mask="(999) 999-9999" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="email" value="Email" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <p:inputText id="email" value="#{register.user.email}" styleClass="form-control"
+                                                 validatorMessage="Invalid email format">
+                                        <f:validateRegex
+                                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </p:inputText>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="address" value="Address" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><h:inputText id="address" value="#{register.user.address}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="age" value="Age" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <h:inputText id="age" value="#{register.user.age}" styleClass="form-control" >
+                                        <f:validateLongRange for="age" minimum="1" maximum="200" />
+                                    </h:inputText>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="city" value="City" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <p:selectOneMenu id="selectmenu" value="#{register.user.city}">  
+                                        <!--<f:selectItem itemLabel="Select One" itemValue="" />-->
+                                        <f:selectItem itemLabel="İstanbul" itemValue="İstanbul" />
+                                        <f:selectItem itemLabel="Adana" itemValue="Adana" />
+                                        <f:selectItem itemLabel="Adiyaman" itemValue="Adiyaman" />
+                                        <f:selectItem itemLabel="Afyonkarahisar" itemValue="Afyonkarahisar" />
+                                        <f:selectItem itemLabel="Agri" itemValue="Agri" />
+                                        <f:selectItem itemLabel="Aksaray" itemValue="Aksaray" />
+                                        <f:selectItem itemLabel="Amasya" itemValue="Amasya" />
+                                        <f:selectItem itemLabel="Ankara" itemValue="Ankara" />
+                                        <f:selectItem itemLabel="Antalya" itemValue="Antalya" />
+                                        <f:selectItem itemLabel="Ardahan" itemValue="Ardahan" />
+                                        <f:selectItem itemLabel="Artvin" itemValue="Artvin" />
+                                        <f:selectItem itemLabel="Aydin" itemValue="Aydin" />
+                                        <f:selectItem itemLabel="Balikesir" itemValue="Balikesir" />
+                                        <f:selectItem itemLabel="Bartin" itemValue="Bartin" />
+                                        <f:selectItem itemLabel="Batman" itemValue="Batman" />
+                                        <f:selectItem itemLabel="Bayburt" itemValue="Bayburt" />
+                                        <f:selectItem itemLabel="Bilecik" itemValue="Bilecik" />
+                                        <f:selectItem itemLabel="Bingol" itemValue="Bingol" />
+                                        <f:selectItem itemLabel="Bitlis" itemValue="Bitlis" />
+                                        <f:selectItem itemLabel="Bolu" itemValue="Bolu" />
+                                        <f:selectItem itemLabel="Burdur" itemValue="Burdur" />
+                                        <f:selectItem itemLabel="Bursa" itemValue="Bursa" />
+                                        <f:selectItem itemLabel="Canakkale" itemValue="Canakkale" />
+                                        <f:selectItem itemLabel="Cankiri" itemValue="Cankiri" />
+                                        <f:selectItem itemLabel="Corum" itemValue="Corum" />
+                                        <f:selectItem itemLabel="Denizli" itemValue="Denizli" />
+                                        <f:selectItem itemLabel="Diyarbakir" itemValue="Diyarbakir" />
+                                        <f:selectItem itemLabel="Duzce" itemValue="Duzce" />
+                                        <f:selectItem itemLabel="Edirne" itemValue="Edirne" />
+                                        <f:selectItem itemLabel="Elazig" itemValue="Elazig" />
+                                        <f:selectItem itemLabel="Erzincan" itemValue="Erzincan" />
+                                        <f:selectItem itemLabel="Erzurum" itemValue="Erzurum" />
+                                        <f:selectItem itemLabel="Eskisehir" itemValue="Eskisehir" />
+                                        <f:selectItem itemLabel="Gaziantep" itemValue="Gaziantep" />
+                                        <f:selectItem itemLabel="Giresun" itemValue="Giresun" />
+                                        <f:selectItem itemLabel="Gumushane" itemValue="Gumushane" />
+                                        <f:selectItem itemLabel="Hakkari" itemValue="Hakkari" />
+                                        <f:selectItem itemLabel="Hatay" itemValue="Hatay" />
+                                        <f:selectItem itemLabel="Igdir" itemValue="Igdir" />
+                                        <f:selectItem itemLabel="Isparta" itemValue="Isparta" />
+                                        <f:selectItem itemLabel="Istanbul" itemValue="Istanbul" />
+                                        <f:selectItem itemLabel="Izmir" itemValue="Izmir" />
+                                        <f:selectItem itemLabel="Kahramanmaras" itemValue="Kahramanmaras" />
+                                        <f:selectItem itemLabel="Karabuk" itemValue="Karabuk" />
+                                        <f:selectItem itemLabel="Karaman" itemValue="Karaman" />
+                                        <f:selectItem itemLabel="Kars" itemValue="Kars" />
+                                        <f:selectItem itemLabel="Kastamonu" itemValue="Kastamonu" />
+                                        <f:selectItem itemLabel="Kayseri" itemValue="Kayseri" />
+                                        <f:selectItem itemLabel="Kilis" itemValue="Kilis" />
+                                        <f:selectItem itemLabel="Kirikkale" itemValue="Kirikkale" />
+                                        <f:selectItem itemLabel="Kirklareli" itemValue="Kirklareli" />
+                                        <f:selectItem itemLabel="Kirsehir" itemValue="Kirsehir" />
+                                        <f:selectItem itemLabel="Kocaeli" itemValue="Kocaeli" />
+                                        <f:selectItem itemLabel="Konya" itemValue="Konya" />
+                                        <f:selectItem itemLabel="Kutahya" itemValue="Kutahya" />
+                                        <f:selectItem itemLabel="Malatya" itemValue="Malatya" />
+                                        <f:selectItem itemLabel="Manisa" itemValue="Manisa" />
+                                        <f:selectItem itemLabel="Mardin" itemValue="Mardin" />
+                                        <f:selectItem itemLabel="Mersin" itemValue="Mersin" />
+                                        <f:selectItem itemLabel="Mugla" itemValue="Mugla" />
+                                        <f:selectItem itemLabel="Mus" itemValue="Mus" />
+                                        <f:selectItem itemLabel="Nevsehir" itemValue="Nevsehir" />
+                                        <f:selectItem itemLabel="Nigde" itemValue="Nigde" />
+                                        <f:selectItem itemLabel="Ordu" itemValue="Ordu" />
+                                        <f:selectItem itemLabel="Osmaniye" itemValue="Osmaniye" />
+                                        <f:selectItem itemLabel="Rize" itemValue="Rize" />
+                                        <f:selectItem itemLabel="Sakarya" itemValue="Sakarya" />
+                                        <f:selectItem itemLabel="Samsun" itemValue="Samsun" />
+                                        <f:selectItem itemLabel="Sanliurfa" itemValue="Sanliurfa" />
+                                        <f:selectItem itemLabel="Siirt" itemValue="Siirt" />
+                                        <f:selectItem itemLabel="Sinop" itemValue="Sinop" />
+                                        <f:selectItem itemLabel="Sirnak" itemValue="Sirnak" />
+                                        <f:selectItem itemLabel="Sivas" itemValue="Sivas" />
+                                        <f:selectItem itemLabel="Tekirdag" itemValue="Tekirdag" />
+                                        <f:selectItem itemLabel="Tokat" itemValue="Tokat" />
+                                        <f:selectItem itemLabel="Trabzon" itemValue="Trabzon" />
+                                        <f:selectItem itemLabel="Tunceli" itemValue="Tunceli" />
+                                        <f:selectItem itemLabel="Usak" itemValue="Usak" />
+                                        <f:selectItem itemLabel="Van" itemValue="Van" />
+                                        <f:selectItem itemLabel="Yalova" itemValue="Yalova" />
+                                        <f:selectItem itemLabel="Yozgat" itemValue="Yozgat" />
+                                        <f:selectItem itemLabel="Zonguldak" itemValue="Zonguldak" />
+                                    </p:selectOneMenu>
+                                </div></div>
+                            <div class="form-group">
+                                <p:outputLabel for="uname" value="Username" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <h:inputText id="uname" value="#{register.user.username}" required="true" styleClass="form-control">
+                                        <f:validateLength minimum="5" maximum="10" />
+                                    </h:inputText>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="password" value="Password" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:password id="password" value="#{register.user.password}" required="true" styleClass="form-control">
+                                        <f:validateLength minimum="4" maximum="10" />
+                                    </p:password>
+                                </div></div>
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <p:commandButton id="RegisterButton" value="Register" action="#{register.buttonRegister}" update="growl"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </p:tab>
+                <p:tab title="Provider">
+                    <div class="well" style="padding-bottom: 70px;">
+                        <h:form styleClass="form-horizontal">
+                            <p:growl id="growl2" showDetail="true" life="3000" /> 
+                            <h4>Provider</h4>
+                            <div class="form-group">
+                                <h:outputLabel for="providername" value="ProviderName" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <p:inputText id="providername" value="#{register.provider.pname}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="phoneno2" value="Phone Number" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:inputMask id="phoneno2" value="#{register.provider.phoneNumber}" mask="(999) 999-9999" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="email2" value="Email" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:inputText id="email2" value="#{register.provider.email}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="address2" value="Address" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:inputText id="address2" value="#{register.provider.address}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="city2" value="City" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:selectOneMenu id="selectmenu" value="#{register.user.city}">  
+                                        <!--<f:selectItem itemLabel="Select One" itemValue="" />-->
+                                        <f:selectItem itemLabel="İstanbul" itemValue="İstanbul" />
+                                        <f:selectItem itemLabel="Adana" itemValue="Adana" />
+                                        <f:selectItem itemLabel="Adiyaman" itemValue="Adiyaman" />
+                                        <f:selectItem itemLabel="Afyonkarahisar" itemValue="Afyonkarahisar" />
+                                        <f:selectItem itemLabel="Agri" itemValue="Agri" />
+                                        <f:selectItem itemLabel="Aksaray" itemValue="Aksaray" />
+                                        <f:selectItem itemLabel="Amasya" itemValue="Amasya" />
+                                        <f:selectItem itemLabel="Ankara" itemValue="Ankara" />
+                                        <f:selectItem itemLabel="Antalya" itemValue="Antalya" />
+                                        <f:selectItem itemLabel="Ardahan" itemValue="Ardahan" />
+                                        <f:selectItem itemLabel="Artvin" itemValue="Artvin" />
+                                        <f:selectItem itemLabel="Aydin" itemValue="Aydin" />
+                                        <f:selectItem itemLabel="Balikesir" itemValue="Balikesir" />
+                                        <f:selectItem itemLabel="Bartin" itemValue="Bartin" />
+                                        <f:selectItem itemLabel="Batman" itemValue="Batman" />
+                                        <f:selectItem itemLabel="Bayburt" itemValue="Bayburt" />
+                                        <f:selectItem itemLabel="Bilecik" itemValue="Bilecik" />
+                                        <f:selectItem itemLabel="Bingol" itemValue="Bingol" />
+                                        <f:selectItem itemLabel="Bitlis" itemValue="Bitlis" />
+                                        <f:selectItem itemLabel="Bolu" itemValue="Bolu" />
+                                        <f:selectItem itemLabel="Burdur" itemValue="Burdur" />
+                                        <f:selectItem itemLabel="Bursa" itemValue="Bursa" />
+                                        <f:selectItem itemLabel="Canakkale" itemValue="Canakkale" />
+                                        <f:selectItem itemLabel="Cankiri" itemValue="Cankiri" />
+                                        <f:selectItem itemLabel="Corum" itemValue="Corum" />
+                                        <f:selectItem itemLabel="Denizli" itemValue="Denizli" />
+                                        <f:selectItem itemLabel="Diyarbakir" itemValue="Diyarbakir" />
+                                        <f:selectItem itemLabel="Duzce" itemValue="Duzce" />
+                                        <f:selectItem itemLabel="Edirne" itemValue="Edirne" />
+                                        <f:selectItem itemLabel="Elazig" itemValue="Elazig" />
+                                        <f:selectItem itemLabel="Erzincan" itemValue="Erzincan" />
+                                        <f:selectItem itemLabel="Erzurum" itemValue="Erzurum" />
+                                        <f:selectItem itemLabel="Eskisehir" itemValue="Eskisehir" />
+                                        <f:selectItem itemLabel="Gaziantep" itemValue="Gaziantep" />
+                                        <f:selectItem itemLabel="Giresun" itemValue="Giresun" />
+                                        <f:selectItem itemLabel="Gumushane" itemValue="Gumushane" />
+                                        <f:selectItem itemLabel="Hakkari" itemValue="Hakkari" />
+                                        <f:selectItem itemLabel="Hatay" itemValue="Hatay" />
+                                        <f:selectItem itemLabel="Igdir" itemValue="Igdir" />
+                                        <f:selectItem itemLabel="Isparta" itemValue="Isparta" />
+                                        <f:selectItem itemLabel="Istanbul" itemValue="Istanbul" />
+                                        <f:selectItem itemLabel="Izmir" itemValue="Izmir" />
+                                        <f:selectItem itemLabel="Kahramanmaras" itemValue="Kahramanmaras" />
+                                        <f:selectItem itemLabel="Karabuk" itemValue="Karabuk" />
+                                        <f:selectItem itemLabel="Karaman" itemValue="Karaman" />
+                                        <f:selectItem itemLabel="Kars" itemValue="Kars" />
+                                        <f:selectItem itemLabel="Kastamonu" itemValue="Kastamonu" />
+                                        <f:selectItem itemLabel="Kayseri" itemValue="Kayseri" />
+                                        <f:selectItem itemLabel="Kilis" itemValue="Kilis" />
+                                        <f:selectItem itemLabel="Kirikkale" itemValue="Kirikkale" />
+                                        <f:selectItem itemLabel="Kirklareli" itemValue="Kirklareli" />
+                                        <f:selectItem itemLabel="Kirsehir" itemValue="Kirsehir" />
+                                        <f:selectItem itemLabel="Kocaeli" itemValue="Kocaeli" />
+                                        <f:selectItem itemLabel="Konya" itemValue="Konya" />
+                                        <f:selectItem itemLabel="Kutahya" itemValue="Kutahya" />
+                                        <f:selectItem itemLabel="Malatya" itemValue="Malatya" />
+                                        <f:selectItem itemLabel="Manisa" itemValue="Manisa" />
+                                        <f:selectItem itemLabel="Mardin" itemValue="Mardin" />
+                                        <f:selectItem itemLabel="Mersin" itemValue="Mersin" />
+                                        <f:selectItem itemLabel="Mugla" itemValue="Mugla" />
+                                        <f:selectItem itemLabel="Mus" itemValue="Mus" />
+                                        <f:selectItem itemLabel="Nevsehir" itemValue="Nevsehir" />
+                                        <f:selectItem itemLabel="Nigde" itemValue="Nigde" />
+                                        <f:selectItem itemLabel="Ordu" itemValue="Ordu" />
+                                        <f:selectItem itemLabel="Osmaniye" itemValue="Osmaniye" />
+                                        <f:selectItem itemLabel="Rize" itemValue="Rize" />
+                                        <f:selectItem itemLabel="Sakarya" itemValue="Sakarya" />
+                                        <f:selectItem itemLabel="Samsun" itemValue="Samsun" />
+                                        <f:selectItem itemLabel="Sanliurfa" itemValue="Sanliurfa" />
+                                        <f:selectItem itemLabel="Siirt" itemValue="Siirt" />
+                                        <f:selectItem itemLabel="Sinop" itemValue="Sinop" />
+                                        <f:selectItem itemLabel="Sirnak" itemValue="Sirnak" />
+                                        <f:selectItem itemLabel="Sivas" itemValue="Sivas" />
+                                        <f:selectItem itemLabel="Tekirdag" itemValue="Tekirdag" />
+                                        <f:selectItem itemLabel="Tokat" itemValue="Tokat" />
+                                        <f:selectItem itemLabel="Trabzon" itemValue="Trabzon" />
+                                        <f:selectItem itemLabel="Tunceli" itemValue="Tunceli" />
+                                        <f:selectItem itemLabel="Usak" itemValue="Usak" />
+                                        <f:selectItem itemLabel="Van" itemValue="Van" />
+                                        <f:selectItem itemLabel="Yalova" itemValue="Yalova" />
+                                        <f:selectItem itemLabel="Yozgat" itemValue="Yozgat" />
+                                        <f:selectItem itemLabel="Zonguldak" itemValue="Zonguldak" />
+                                    </p:selectOneMenu>
+                                </div></div>
+                            <div class="form-group">
+                                <p:outputLabel value="Field: " styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <p:selectManyCheckbox id="field2" value="#{register.provider.field}" layout="grid" columns="3">
+                                        <f:selectItems value="#{register.fieldList}"/> 
+                                    </p:selectManyCheckbox>
+                                </div></div>
+                            <div class="form-group">
+                                <p:outputLabel for="uname2" value="Username" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:inputText id="uname2" value="#{register.provider.username}" required="true" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="password2" value="Password" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><p:inputText id="password2" value="#{register.provider.password}" required="true" styleClass="form-control"/>
+                                </div></div>
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <p:commandButton id="RegisterButton2" value="Register" action="#{register.providerRegister}" update="growl2"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </p:tab>
+            </p:tabView>
         </div>
         <div class="jumbotron col-sm-4 pull-right">
             <p>If you are a member already click here to login: </p><h:link outcome="login" value="Login" styleClass="btn btn-primary"/>

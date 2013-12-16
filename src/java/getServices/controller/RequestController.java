@@ -30,7 +30,7 @@ public class RequestController {
     public RequestController() throws Exception {
         fieldList = new ArrayList<String>();
         requestdao = new RequestDao();
-        fieldList = requestdao.getList();
+        fieldList = requestdao.getListField();
         }
     
     public void buttonRequest() throws Exception {
