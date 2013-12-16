@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package getServices.controller;
 
 import getServices.dao.RequestDao;
@@ -14,10 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
-/**
- *
- * @author Ibrahim Seckin
- */
 @ManagedBean(name = "requestBean")
 @ViewScoped
 
@@ -33,16 +24,11 @@ public class RequestController {
         Logger.logIt(s);
     }
     
-        public RequestController() throws Exception {
-        //logIt("moduleController constructor");
+    public RequestController() throws Exception {
         fieldList = new ArrayList<String>();
-
-
         requestdao = new RequestDao();
         fieldList = requestdao.getList();
-
-    }
-    
+        }
     
     public void buttonRequest() throws Exception {
         requestdao = new RequestDao();
@@ -50,16 +36,10 @@ public class RequestController {
                 request.getCity(), request.getBudget(), request.getSummary());
     }
 
-    /**
-     * @return the request
-     */
     public Requests getRequest() {
         return request;
     }
 
-    /**
-     * @param request the request to set
-     */
     public void setRequest(Requests request) {
         this.request = request;
     }
@@ -75,30 +55,18 @@ public class RequestController {
         return options;
     }
 
-    /**
-     * @return the fieldList
-     */
     public List<String> getFieldList() {
         return fieldList;
     }
 
-    /**
-     * @param fieldList the fieldList to set
-     */
     public void setFieldList(List<String> fieldList) {
         this.fieldList = fieldList;
     }
 
-    /**
-     * @return the filteredFieldList
-     */
     public List<String> getFilteredFieldList() {
         return filteredFieldList;
     }
 
-    /**
-     * @param filteredFieldList the filteredFieldList to set
-     */
     public void setFilteredFieldList(List<String> filteredFieldList) {
         this.filteredFieldList = filteredFieldList;
     }

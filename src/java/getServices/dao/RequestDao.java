@@ -112,15 +112,13 @@ public class RequestDao extends DaoConnect {
     public List<String> getList() {
         try {
             setFieldList(new ArrayList<String>());
-            String query = "SELECT field FROM (providers) ";
+            String query = "SELECT name FROM (fields) ";
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
 
             while (result.next()) {
-                logIt("while'a girdi");
-                String field = result.getString("field");
-                logIt("field:" + field);
+                String field = result.getString("name");
                 getFieldList().add(field);
             }
         } catch (SQLException ex) {

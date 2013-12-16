@@ -35,7 +35,7 @@
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li class="#{navbar.active1}"><h:link outcome="index" value="Home" /></li>
-                            <li class="#{navbar.active2}"><h:link outcome="request" value="Requests" /></li>
+                                      <li class="#{navbar.active2}"><h:link outcome="request" value="Requests" rendered="#{navbar.loggedIn}"/></li>
                             <li class="#{navbar.active3}"><h:link outcome="register" value="Register" rendered="#{!navbar.loggedIn}"/></li>
                             <li class="#{navbar.active4}"><h:link outcome="userpage" value="Userpage" rendered="#{navbar.loggedIn}"/></li>
                         </ul>

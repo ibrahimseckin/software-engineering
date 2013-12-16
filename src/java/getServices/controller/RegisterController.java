@@ -38,14 +38,9 @@ public class RegisterController {
         userdao = new UserDao();
         userdao.insertUser(user.getFirstname(), user.getSurname(), user.getPhoneNumber(), user.getEmail(),
                 user.getAddress(), user.getAge(), user.getCity(), user.getUsername(), user.getPassword());
-        Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        Session session =  (Session)sessionMap.get("session");
-        logIt("userid" + session.getUserId());
-        
     }
 
     public void providerRegister() throws Exception {
-
         servicesdao = new ServicesDao();
         servicesdao.insertProvider(provider.getPname(), provider.getPhoneNumber(), provider.getEmail(), provider.getAddress(),
                 provider.getCity(), provider.getField(), provider.getUsername(), provider.getPassword());
