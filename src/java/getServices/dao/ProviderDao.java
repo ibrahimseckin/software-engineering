@@ -6,11 +6,15 @@
 
 package getServices.dao;
 
+import getServices.model.Provider;
 import getServices.util.Logger;
+import static getServices.util.Logger.logIt;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,6 +26,8 @@ public class ProviderDao extends DaoConnect {
     Statement statement;
     ResultSet result;
     
+    private List<String> fieldList;
+    private List<Provider> providerList;
     
     public ProviderDao() throws Exception {
         connect();
@@ -72,6 +78,40 @@ public class ProviderDao extends DaoConnect {
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
+    }
+    
+    public List<Provider> getProviders() {
+        try {
+            setProviderList(new ArrayList<Provider>());
+            String query = "SELECT * from (providers) ";
+
+            statement = conn.createStatement();
+            result = statement.executeQuery(query);
+logIt("sdfzxc");
+            while (result.next()) {
+                logIt("sdf");
+                int id = result.getInt("id");
+                String pname = result.getString("pname");
+                String phoneno = result.getString("phoneno");
+                String email = result.getString("email");
+                String address = result.getString("address");
+                String city = result.getString("city");
+                //Double rate = result.getDouble("rate");
+
+                getProviderList().add(new Provider(id,pname,phoneno,email,address,city));
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return getProviderList();
+    }
+    
+    public void setProviderList(List<Provider> providerList) {
+        this.providerList = providerList;
+    }
+    
+        public List<Provider> getProviderList() {
+        return providerList;
     }
     
     

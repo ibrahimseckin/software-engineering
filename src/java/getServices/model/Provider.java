@@ -21,6 +21,18 @@ public class Provider {
     private String username;
     private String password;
 
+    
+    public Provider(int id, String pname, String phoneno, String email, String address, String city){
+        this.id=id;
+        this.pname=pname;
+        this.phoneNumber=phoneno;
+        this.email=email;
+        this.address=address;
+        this.city=city;
+    }
+    
+    public Provider(){}
+    
     /**
      * @return the id
      */
