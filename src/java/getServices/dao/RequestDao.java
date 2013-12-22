@@ -67,6 +67,7 @@ public class RequestDao extends DaoConnect {
             while (result.next()) {
                 request.setId(result.getInt("id"));
                 request.setUserid(result.getInt("userid"));
+                request.setTitle(result.getString("title"));
                 request.setField(result.getString("field"));
                 request.setTimelimit(result.getDate("timelimit"));
                 request.setCity(result.getString("city"));

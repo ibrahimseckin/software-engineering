@@ -6,30 +6,31 @@
                 template="template.xhtml">
 
     <ui:define name="title">
-        <title> User Page </title>
+        <title> Request Details </title>
     </ui:define>
     <ui:define name="metadata">
         #{navbar.setActive(53)}
     </ui:define>
     <ui:define name="content">
-        <h3 class="page-header col-sm-offset-1"><h:outputText value="#{detailsBean.request.title}"/></h3>
-        <div class ="col-sm-4 col-sm-offset-1">
-            <h:outputText value="#{detailsBean.request.summary}"/>
-        </div>
-        <div class ="col-sm-4">
-            <h:outputText value="#{detailsBean.user.username}"/>
+        
+        <div class="row">
+            <h3 class="col-sm-12"><h:outputText value="#{detailsBean.request.title}"/></h3>
         </div>
         
-        <div class="col-sm-8">
-        <p:dataList value="#{detailsBean.offerList}" var="offer" type="definition">  
-            By: #{offer.provider.pname}, Price: #{offer.price}, Details: #{offer.exp}  
-            <f:facet name="header">  
-            </f:facet>
-        </p:dataList>
-            
-        </div>
-        <p:outputPanel rendered="#{!navbar.isUser and navbar.loggedIn}">
-            <div class="row">
+        <div class="row">  
+         <div class="col-lg-6">
+             <div>
+          <div class="row">
+            <div class ="col-md-4 col-sm-offset-1">
+                <h:outputText value="#{detailsBean.request.summary}"/>
+            </div>
+            <div class ="col-md-4">
+                <h:outputText value="#{detailsBean.user.username}"/>
+            </div>
+          </div>
+             
+         <div class="row">
+         <p:outputPanel rendered="#{!navbar.isUser and navbar.loggedIn}">
             <h:form class="form-horizontal" id="offer">
                 <p:growl id="growl" sticky="true" showDetail="true" life="3000" /> 
                 <h3>Make an Offer</h3>
@@ -46,7 +47,41 @@
                                 <p:commandButton id="offerButton" value="Make Offer" action="#{detailsBean.makeOffer(navbar.userid)}" update="growl"/>
                             </div>
             </h:form>
+           
+           </p:outputPanel>    
+           </div> 
+             </div>
+         </div>
+        
+         <div class="col-lg-6">
+             <p:dataList value="#{detailsBean.offerList}" var="offer" type="definition" 
+                         emptyMessage="No offers have been done to this request yet." lazy="true">
+            <div class="row">
+                <div class="col-md-7 col-md-offset-1" style="padding:5px">
+                <h:link outcome="providerDetails?id=#{offer.providerId}">#{offer.provider.pname}</h:link>
+                </div>
             </div>
-         </p:outputPanel>
+            <div class="row">
+                <div class="col-md-7 col-md-offset-1">    
+                    #{offer.exp}
+                </div>
+            <div class="col-md-5"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-md-offset-1 small">    
+                    Price: #{offer.price}
+                </div>
+                
+            <div class="col-md-5"></div>
+            </div>
+                 <p:separator id="separator"/> 
+            <f:facet name="header">
+                <h4>Offers to this request</h4>
+            </f:facet>
+          </p:dataList>
+         </div>
+        </div>    
+        
+        
     </ui:define>
 </ui:composition>

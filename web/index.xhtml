@@ -4,15 +4,14 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="template.xhtml">
-
     <ui:define name="title">
         <title> Home Page </title>
     </ui:define>
     <ui:define name="metadata">
         #{navbar.setActive(1)}
     </ui:define>
-    <ui:define name="content">
-
+    
+    <ui:define name="jumbo">
         <div class="jumbotron">
             <div class="page-header">
                 <h1>getServices <small>Find experts of your needs</small></h1>
@@ -20,9 +19,11 @@
                 If you are an expert yourself, you can also apply to existing requests.
                 Register now to start.</p>
                 <h:link outcome="register" value="Register" styleClass="btn btn-success btn-lg" />
-               
             </div>
         </div>
+    </ui:define>
+    
+    <ui:define name="content">
         <p:outputPanel deferred="true" deferredMode="load">  
         <div class="container">
             <div class="col-lg-8">

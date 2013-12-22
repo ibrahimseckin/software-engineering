@@ -67,3 +67,6 @@ $colHighlight   : #c5d6ca;*/
         color: #c5d6ca;
     }
 }
+.ui-growl {
+    top: 70px!important;
+}
