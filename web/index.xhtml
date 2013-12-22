@@ -10,71 +10,77 @@
     <ui:define name="metadata">
         #{navbar.setActive(1)}
     </ui:define>
-    
+
     <ui:define name="jumbo">
         <div class="jumbotron">
             <div class="page-header">
                 <h1>getServices <small>Find experts of your needs</small></h1>
                 <p>getServices is a website where you can find experts for your daily errands.
-                If you are an expert yourself, you can also apply to existing requests.
-                Register now to start.</p>
+                    If you are an expert yourself, you can also apply to existing requests.
+                    Register now to start.</p>
                 <h:link outcome="register" value="Register" styleClass="btn btn-success btn-lg" />
             </div>
         </div>
     </ui:define>
-    
+
     <ui:define name="content">
         <p:outputPanel deferred="true" deferredMode="load">  
-        <div class="container">
-            <div class="col-lg-8">
-                <h3>Latest requests from all users:</h3>
-            <h:form>
-         <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable" var="userRequest" value="#{homepage.requestList}" widgetVar="requestTable"
-                             paginator="true" rows="20"  
-                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                             rowsPerPageTemplate="10,20,30"
-                             paginatorPosition="bottom"
-                             emptyMessage="No request found with given criteria" filteredValue="#{homepage.filteredRequestList}"
-                             >
-                    <f:facet name="header" > 
-                        <p:outputPanel style="float:right; margin-top: 5px; ">  
-                            <h:outputText value="Search  " />  
-                            <p:inputText id="globalFilter" onkeyup="requestTable.filter()"   style="height: 30px" />  
-                        </p:outputPanel>  
-                    </f:facet> 
+            <div class="container">
+                <div class="col-lg-8">
+                    <h3>Latest requests from all users:</h3>
+                    <h:form>
+                        <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable" var="userRequest" value="#{homepage.requestList}" widgetVar="requestTable"
+                                     paginator="true" rows="20"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="10,20,30"
+                                     paginatorPosition="bottom"
+                                     emptyMessage="No request found with given criteria" filteredValue="#{homepage.filteredRequestList}"
+                                     >
+                            <f:facet name="header" > 
+                                <p:outputPanel style="float:right; margin-top: 5px; ">  
+                                    <h:outputText value="Search  " />  
+                                    <p:inputText id="globalFilter" onkeyup="requestTable.filter()"   style="height: 30px" />  
+                                </p:outputPanel>  
+                            </f:facet> 
 
-                    <p:column   filterBy="titleColumn" filterMatchMode="contains" rendered="false" >  
-                    </p:column>
-                    
-                    <p:column id="titleColumn" headerText="Title" sortBy="" >
-                        <h:link value="#{userRequest.title}" outcome="requestDetails?id=#{userRequest.id}" />
-                    </p:column>
-             
-                    <p:column id="fieldColumn" headerText="Field" sortBy="#{userRequest.field}" >
-                        <h:outputText value="#{userRequest.field}" />
-                    </p:column>
+                            <p:column   filterBy="title" filterMatchMode="contains" rendered="false" >  
+                            </p:column>
 
-                    <p:column id="requestDate"   headerText="RequestDate" sortBy="#{userRequest.requestDate}" >  
-                        <h:outputText value="#{userRequest.requestDate}" />  
-                    </p:column>  
+                            <p:column   filterBy="field" filterMatchMode="contains" rendered="false" >  
+                            </p:column>p:column
 
-                    <p:column id="timelimit"   headerText="Timelimit" sortBy="#{userRequest.timelimit}">  
-                        <h:outputText value="#{userRequest.timelimit}" />  
-                    </p:column>
+                             <p:column   filterBy="city" filterMatchMode="contains" rendered="false" >  
+                            </p:column>p:column
+                            
+                            <p:column id="titleColumn" headerText="Title" sortBy="" >
+                                <h:link value="#{userRequest.title}" outcome="requestDetails?id=#{userRequest.id}" />
+                            </p:column>
 
-                    <p:column id="city"   headerText="City" sortBy="#{userRequest.city}">  
-                        <h:outputText value="#{userRequest.city}" />  
-                    </p:column>
+                            <p:column id="fieldColumn" headerText="Field" sortBy="#{userRequest.field}" >
+                                <h:outputText value="#{userRequest.field}" />
+                            </p:column>
 
-                    <p:column id="budget"   headerText="Budget" sortBy="#{userRequest.budget}">  
-                        <h:outputText value="#{userRequest.budget}" />  
-                    </p:column>
+                            <p:column id="requestDate"   headerText="RequestDate" sortBy="#{userRequest.requestDate}" >  
+                                <h:outputText value="#{userRequest.requestDate}" />  
+                            </p:column>  
+
+                            <p:column id="timelimit"   headerText="Timelimit" sortBy="#{userRequest.timelimit}">  
+                                <h:outputText value="#{userRequest.timelimit}" />  
+                            </p:column>
+
+                            <p:column id="city"   headerText="City" sortBy="#{userRequest.city}">  
+                                <h:outputText value="#{userRequest.city}" />  
+                            </p:column>
+
+                            <p:column id="budget"   headerText="Budget" sortBy="#{userRequest.budget}">  
+                                <h:outputText value="#{userRequest.budget}" />  
+                            </p:column>
 
 
-                </p:dataTable> 
-                </h:form>
+                        </p:dataTable> 
+                    </h:form>
+                </div>
             </div>
-        </div>
         </p:outputPanel>
     </ui:define>
 </ui:composition>
