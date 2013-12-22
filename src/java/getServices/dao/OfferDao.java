@@ -2,6 +2,7 @@ package getServices.dao;
 
 import static getServices.dao.DaoConnect.conn;
 import getServices.model.Offers;
+import getServices.model.Provider;
 import getServices.util.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,19 +102,27 @@ public class OfferDao extends DaoConnect {
     public List<Offers> getOffersToRequest(int requestid){
         try {
             this.offersList = new ArrayList<Offers>();
-            String query = "SELECT * from requests where id="+requestid;
+            String query = "SELECT * from offers " +
+                            "INNER JOIN providers " +
+                            "ON offers.providerid = providers.id where requestid=" + requestid;
+                           //+ "and request.providerid = provider.id";
 
             statement = conn.createStatement();
             result = statement.executeQuery(query);
 
             while (result.next()) {
-                int requestId = result.getInt("requestid");
-                int providerId = result.getInt("providerid");
-                int price = result.getInt("price");
-                String exp = result.getString("exp");
-                boolean selected = result.getBoolean("selected");
-                int id = result.getInt("id");
-                this.offersList.add(new Offers(id,requestId,providerId,price,exp,selected));
+                Offers offer = new Offers();
+                Provider provider;
+                provider = new Provider(result.getInt("providers.id"),result.getString("pname"),result.getString("phoneno"),result.getString("email"),result.getString("address"),result.getString("city"),result.getDouble("rate"),result.getString("resume"));
+                offer.setRequestId(result.getInt("requestid"));
+                offer.setproviderId(result.getInt("providerid"));
+                offer.setPrice(result.getInt("price"));
+                offer.setExp(result.getString("exp"));
+                offer.setSelected(result.getBoolean("accepted"));
+                offer.setId(result.getInt("offers.id"));
+                offer.setProvider(provider);
+                
+                this.offersList.add(offer);
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());

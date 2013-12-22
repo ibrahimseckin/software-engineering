@@ -33,9 +33,10 @@ public class RequestController {
         fieldList = requestdao.getListField();
         }
     
-    public void buttonRequest() throws Exception {
+    public void buttonRequest(int userid) throws Exception {
+        request.setUserid(userid);
         requestdao = new RequestDao();
-        requestdao.insertRequest(request.getUserid(), request.getField(), request.getTimelimit(),
+        requestdao.insertRequest(request.getUserid(), request.getTitle(), request.getField(), request.getTimelimit(),
                 request.getCity(), request.getBudget(), request.getSummary());
     }
 

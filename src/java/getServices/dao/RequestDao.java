@@ -34,25 +34,24 @@ public class RequestDao extends DaoConnect {
         return new java.sql.Timestamp(today.getTime());
     }
 
-    public void insertRequest(int userid, String field, Date timelimit,
+    public void insertRequest(int userid, String title, String field, Date timelimit,
             String city, double budget, String summary) {
         try {
-
-            String query = "Insert into requests" + "(userid,field,reqdate,timelimit,city,budget,summary)"
-                    + "values (?,?,?,?,?,?,?) ";
-
+            String query = "Insert into requests" + "(userid,title,field,reqdate,timelimit,city,budget,summary)"
+                    + "values (?,?,?,?,?,?,?,?) ";
+            logIt(title);
             pstatement = conn.prepareStatement(query);
             pstatement.setInt(1, userid);
-            pstatement.setString(2, field);
-            pstatement.setTimestamp(3, getCurrentTimeStamp());
-            pstatement.setDate(4, (java.sql.Date) timelimit);
-            pstatement.setString(5, city);
-            pstatement.setDouble(6, budget);
-            pstatement.setString(7, summary);
+            pstatement.setString(2, title);
+            pstatement.setString(3, field);
+            pstatement.setTimestamp(4, getCurrentTimeStamp());
+            pstatement.setTimestamp(5, new java.sql.Timestamp(timelimit.getTime()));
+            pstatement.setString(6, city);
+            pstatement.setDouble(7, budget);
+            pstatement.setString(8, summary);
             pstatement.executeUpdate();
         } catch (SQLException e) {
-
-            System.out.println(e.getMessage());
+            System.out.println("ERROR: " + e.getMessage());
         }
     }
 
@@ -98,7 +97,7 @@ public class RequestDao extends DaoConnect {
                 Date reqdate = result.getDate("reqdate");
                 Date timelimit = result.getDate("timelimit");
                 String city = result.getString("city");
-                Double budget = result.getDouble("budget");
+                int budget = result.getInt("budget");
                 String summary = result.getString("summary");
 
                 getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
@@ -125,7 +124,7 @@ public class RequestDao extends DaoConnect {
                 Date reqdate = result.getDate("reqdate");
                 Date timelimit = result.getDate("timelimit");
                 String city = result.getString("city");
-                Double budget = result.getDouble("budget");
+                int budget = result.getInt("budget");
                 String summary = result.getString("summary");
                     
                 getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));

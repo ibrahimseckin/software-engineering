@@ -42,26 +42,20 @@
                         </p:outputPanel>  
                     </f:facet> 
 
-                    <p:column   filterBy="field" filterMatchMode="contains" rendered="false" >  
+                    <p:column   filterBy="titleColumn" filterMatchMode="contains" rendered="false" >  
                     </p:column>
                     
-                    <p:column id="detailsColumn" headerText="Link" sortBy="" >
-                        <h:link value="Details" outcome="requestDetails?id=#{userRequest.id}" />
+                    <p:column id="titleColumn" headerText="Title" sortBy="" >
+                        <h:link value="#{userRequest.title}" outcome="requestDetails?id=#{userRequest.id}" />
                     </p:column>
              
                     <p:column id="fieldColumn" headerText="Field" sortBy="#{userRequest.field}" >
                         <h:outputText value="#{userRequest.field}" />
                     </p:column>
 
-                    <p:column   filterBy="requestDate" filterMatchMode="contains" rendered="false" >  
-                    </p:column>
-
-                    <p:column id="requestDare"   headerText="RequestDate" sortBy="#{userRequest.requestDate}" >  
+                    <p:column id="requestDate"   headerText="RequestDate" sortBy="#{userRequest.requestDate}" >  
                         <h:outputText value="#{userRequest.requestDate}" />  
                     </p:column>  
-
-                    <p:column   filterBy="timelimit" filterMatchMode="contains" rendered="false" >  
-                    </p:column>
 
                     <p:column id="timelimit"   headerText="Timelimit" sortBy="#{userRequest.timelimit}">  
                         <h:outputText value="#{userRequest.timelimit}" />  

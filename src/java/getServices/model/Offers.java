@@ -7,6 +7,7 @@ public class Offers {
     private int price;
     private String exp;
     private boolean selected;
+    private Provider provider;
     
     public Offers(){}
     
@@ -17,6 +18,7 @@ public class Offers {
         this.price =  price;
         this.exp = exp;
         this.selected = selected;
+        this.provider = new Provider();
     }
     
     public int getId(){
@@ -58,17 +60,19 @@ public class Offers {
         this.exp = exp;    
     } 
 
-    /**
-     * @return the selected
-     */
     public boolean isSelected() {
         return selected;
     }
 
-    /**
-     * @param selected the selected to set
-     */
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
     }
 }

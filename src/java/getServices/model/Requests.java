@@ -11,12 +11,12 @@ public class Requests {
     private Date timelimit;
     private Date requestDate;
     private String city;
-    private double budget;
+    private int budget;
     private String summary;
     
     public Requests(){} //default constructor
     
-    public Requests(int id1,int userid1,String title1,String field,Date timelimit,Date requestDate, String city,double budget, String summary){
+    public Requests(int id1,int userid1,String title1,String field,Date timelimit,Date requestDate, String city, int budget, String summary){
         this.field = field;
         this.id = id1;
         this.userid = userid1;
@@ -68,11 +68,11 @@ public class Requests {
         this.city = city;
     }
 
-    public double getBudget() {
+    public int getBudget() {
         return budget;
     }
 
-    public void setBudget(double budget) {
+    public void setBudget(int budget) {
         this.budget = budget;
     }
 

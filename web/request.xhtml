@@ -32,7 +32,7 @@
 
                 <div class="form-group">
                     <h:outputLabel for="city" value="city" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:selectOneMenu id="selectmenu2" value="#{register.user.city}">  
+                    <div class="col-sm-6"><p:selectOneMenu id="city" value="#{requestBean.request.city}">  
 <!--<f:selectItem itemLabel="Select One" itemValue="" />-->
 <f:selectItem itemLabel="İstanbul" itemValue="İstanbul" />
 <f:selectItem itemLabel="Adana" itemValue="Adana" />
@@ -124,7 +124,7 @@
                     </div></div>
                 
                 <div class="form-group">
-                    <h:outputLabel for="popupDate" value="Deadline:" styleClass="col-sm-2 col-sm-offset-1 control-label"/>  
+                    <h:outputLabel for="popupCal" value="Deadline:" styleClass="col-sm-2 col-sm-offset-1 control-label"/>  
                         <div class="col-sm-3">
                         <p:calendar value="#{requestBean.request.timelimit}" id="popupCal"/>
                         </div></div>
@@ -137,7 +137,7 @@
 
 
                 <div class="col-sm-offset-3 col-sm-6">
-                    <p:commandButton id="RequestButton" value="Request" action="#{requestBean.buttonRequest()}" update="growl" styleClass="btn btn-success btn-block"/>
+                    <p:commandButton id="RequestButton" value="Request" action="#{requestBean.buttonRequest(navbar.userid)}" update="growl" styleClass="btn btn-success btn-block"/>
                 </div>
 
             </h:form>

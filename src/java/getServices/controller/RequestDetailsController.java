@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package getServices.controller;
 
 import getServices.dao.OfferDao;
@@ -11,6 +5,7 @@ import getServices.dao.ProviderDao;
 import getServices.dao.RequestDao;
 import getServices.dao.UserDao;
 import getServices.model.Offers;
+import getServices.model.Provider;
 import getServices.model.Requests;
 import getServices.model.User;
 import java.util.List;
@@ -24,27 +19,35 @@ public class RequestDetailsController {
     private Requests request = new Requests();
     private User user = new User();
     private List<Offers> offerList;
+    private List<Provider> providerList;
     private final RequestDao requestdao;
     private final UserDao userdao;
     private final OfferDao offerdao;
     private final ProviderDao providerdao;
     private int passedParameter;
+    private Offers newOffer;
     
     public RequestDetailsController() throws Exception {
-        //logIt("moduleController constructor");
         int userid;
         requestdao = new RequestDao();
         offerdao = new OfferDao();
+        userdao = new UserDao();
         providerdao = new ProviderDao();
+        newOffer = new Offers();
         this.passedParameter = getPassedParameter();
         request = requestdao.getOneRequest(passedParameter);
         userid = request.getUserid();
-        userdao = new UserDao();
         user = userdao.getOneUser(userid);
         offerList = offerdao.getOffersToRequest(request.getId());
     }
     
-
+    public String makeOffer(int providerid){
+        newOffer.setRequestId(passedParameter);
+        newOffer.setproviderId(providerid);
+        offerdao.insertOffer(passedParameter, providerid, newOffer.getPrice(), newOffer.getExp());
+        return "requestDetails?faces-redirect=true&id="+passedParameter;
+    }
+    
     public final int getPassedParameter() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         this.passedParameter = Integer.parseInt(facesContext.getExternalContext().
@@ -70,5 +73,21 @@ public class RequestDetailsController {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    
+    public List<Offers> getOfferList() {
+        return offerList;
+    }
+
+    public void setOfferList(List<Offers> offerList) {
+        this.offerList = offerList;
+    }
+
+    public Offers getNewOffer() {
+        return newOffer;
+    }
+
+    public void setNewOffer(Offers newOffer) {
+        this.newOffer = newOffer;
     }
 }

@@ -19,5 +19,34 @@
         <div class ="col-sm-4">
             <h:outputText value="#{detailsBean.user.username}"/>
         </div>
+        
+        <div class="col-sm-8">
+        <p:dataList value="#{detailsBean.offerList}" var="offer" type="definition">  
+            By: #{offer.provider.pname}, Price: #{offer.price}, Details: #{offer.exp}  
+            <f:facet name="header">  
+            </f:facet>
+        </p:dataList>
+            
+        </div>
+        <p:outputPanel rendered="#{!navbar.isUser and navbar.loggedIn}">
+            <div class="row">
+            <h:form class="form-horizontal" id="offer">
+                <p:growl id="growl" sticky="true" showDetail="true" life="3000" /> 
+                <h3>Make an Offer</h3>
+                            <div class="form-group">
+                                <h:outputLabel for="explain" value="Details: " styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6">
+                                    <h:inputTextarea id="explain" value="#{detailsBean.newOffer.exp}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="form-group">
+                                <h:outputLabel for="price" value="Price: " styleClass="col-sm-2 col-sm-offset-1 control-label"/>
+                                <div class="col-sm-6"><h:inputText id="price" value="#{detailsBean.newOffer.price}" styleClass="form-control"/>
+                                </div></div>
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <p:commandButton id="offerButton" value="Make Offer" action="#{detailsBean.makeOffer(navbar.userid)}" update="growl"/>
+                            </div>
+            </h:form>
+            </div>
+         </p:outputPanel>
     </ui:define>
 </ui:composition>

@@ -1,21 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package getServices.dao;
 
 import getServices.util.Logger;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Properties;
 
-/**
- *
- * @author TTISECKIN
- */
 public class DaoConnect {
 
     public static Connection conn = null;
@@ -27,11 +17,15 @@ public class DaoConnect {
     public  Statement connect() throws Exception {
         if(conn == null){
         Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://173.208.136.194:3306/test", "webapp", "webapp14");
-        logIt("connection dondu");
+        conn = DriverManager.getConnection("jdbc:mysql://173.208.136.194:3306/test?useUnicode=true&characterEncoding=UTF-8", "webapp", "webapp14");
+        Statement st1 = conn.createStatement();
+        
+        //st1.executeQuery("SET NAMES 'utf8'"); 
+        st1.executeQuery("SET CHARACTER SET utf8mb4"); 
+        st1.executeQuery("SET COLLATION_CONNECTION = 'utf8mb4_turkish_ci'"); 
+        
         return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         }
         return conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        
     }
 }
