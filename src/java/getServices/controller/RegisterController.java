@@ -1,7 +1,7 @@
 package getServices.controller;
 
+import getServices.dao.ProviderDao;
 import getServices.dao.RequestDao;
-import getServices.dao.ServicesDao;
 import getServices.dao.UserDao;
 import getServices.model.Provider;
 import getServices.model.User;
@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "register")
@@ -38,14 +37,24 @@ public class RegisterController {
     }
 
     UserDao userdao;
-    ServicesDao servicesdao;
+    ProviderDao providerdao;
 
 
     public String buttonRegister() throws Exception {
+        FacesMessage message = new FacesMessage();
         userdao = new UserDao();
+        providerdao = new ProviderDao();
+        if(providerdao.isRegisteredAlready(user.getUsername())){
+            message.setSeverity(FacesMessage.SEVERITY_INFO);
+            message.setSummary("Username already Exists");
+            message.setDetail("Please use another username");
+            FacesContext.getCurrentInstance().addMessage("formId:register", message);
+            return null;
+            }
+        
         userdao.insertUser(user.getFirstname(), user.getSurname(), user.getPhoneNumber(), user.getEmail(),
                 user.getAddress(), user.getAge(), user.getCity(), user.getUsername(), user.getPassword());
-        FacesMessage message = new FacesMessage();
+        
         message.setSeverity(FacesMessage.SEVERITY_INFO);
         message.setSummary("Succesfull Register");
         message.setDetail("Succesfull Register");
@@ -54,10 +63,17 @@ public class RegisterController {
     }
 
     public String providerRegister() throws Exception {
-        servicesdao = new ServicesDao();
-        servicesdao.insertProvider(provider.getPname(), provider.getPhoneNumber(), provider.getEmail(), provider.getAddress(),
-                provider.getCity(), null, provider.getUsername(), provider.getPassword());
         FacesMessage message = new FacesMessage();
+        providerdao = new ProviderDao();
+        if(providerdao.isRegisteredAlready(provider.getUsername())){
+            message.setSeverity(FacesMessage.SEVERITY_INFO);
+            message.setSummary("Username already Exists");
+            message.setDetail("Please use another username");
+            FacesContext.getCurrentInstance().addMessage("formId:register", message);
+            return null;
+            }
+        providerdao.insertProvider(provider.getPname(), provider.getPhoneNumber(), provider.getEmail(), provider.getAddress(),
+                provider.getCity(), null, provider.getUsername(), provider.getPassword());
         message.setSeverity(FacesMessage.SEVERITY_INFO);
         message.setSummary("Succesfull Register");
         message.setDetail("Succesfull Register");

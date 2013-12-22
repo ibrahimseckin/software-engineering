@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package getServices.dao;
 
 import getServices.model.Provider;
@@ -16,10 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author samil.can
- */
 public class ProviderDao extends DaoConnect {
     
     PreparedStatement pstatement = null;
@@ -33,23 +23,23 @@ public class ProviderDao extends DaoConnect {
     public ProviderDao() throws Exception {
         connect();
     }
-    
-    public void insertProvider(String pname, String phoneNumber, String email, String address,
-            String city, String username, String password) {
+
+    public void insertProvider(String pname, String phoneNumber, String email,
+            String address, String city, String field, String username, String password) {
         try {
             
-            String query = "Insert into providers" + "(pname,phoneno,email,address,city,rate,username,password,resume)"
-                    + "values (?,?,?,?,?,?,?,?,?) ";
+            String query = "Insert into providers" + "(pname,phoneno,email,address,city,field,username,password)"
+                    + "values (?,?,?,?,?,?,?,?) ";
 
             pstatement = conn.prepareStatement(query);
-            //pstatement.setInt(1, 1);
-            pstatement.setString(1,pname );
+            pstatement.setString(1, pname);
             pstatement.setString(2, phoneNumber);
             pstatement.setString(3, email);
             pstatement.setString(4, address);
             pstatement.setString(5, city);
-            pstatement.setString(6, username);
-            pstatement.setString(7, password);
+            pstatement.setString(6, field);
+            pstatement.setString(7, username);
+            pstatement.setString(8, password);
             pstatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -59,6 +49,27 @@ public class ProviderDao extends DaoConnect {
         }
 
     }
+    public boolean isRegisteredAlready(String username){
+        try {
+            
+            String query = "Select username from providers where username = ?";
+            pstatement = conn.prepareStatement(query);
+            pstatement.setString(1, username);
+            result = pstatement.executeQuery();
+            if(result.first()) return true;
+            
+            query = "Select username from users where username = ?";
+            pstatement = conn.prepareStatement(query);
+            pstatement.setString(1, username);
+            result = pstatement.executeQuery();
+            if(result.first()) return true;
+            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    
     
     public void insertProviderFields(){}
     
@@ -145,16 +156,10 @@ public class ProviderDao extends DaoConnect {
         return getProvider();
     }
 
-    /**
-     * @return the provider
-     */
     public Provider getProvider() {
         return provider;
     }
 
-    /**
-     * @param provider the provider to set
-     */
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
