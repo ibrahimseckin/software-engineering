@@ -120,19 +120,19 @@
                 
                 <div class="form-group">
                     <h:outputLabel for="budget" value="Budget" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                    <div class="col-sm-6"><p:inputText id="budget" value="#{requestBean.request.budget}" styleClass="form-control"/>
+                    <div class="col-sm-6"><p:inputText id="budget" required="true" value="#{requestBean.request.budget}" styleClass="form-control"/>
                     </div></div>
                 
                 <div class="form-group">
                     <h:outputLabel for="popupCal" value="Deadline:" styleClass="col-sm-2 col-sm-offset-1 control-label"/>  
                         <div class="col-sm-3">
-                        <p:calendar value="#{requestBean.request.timelimit}" id="popupCal"/>
+                            <p:calendar value="#{requestBean.request.timelimit}" required="true" id="popupCal"/>
                         </div></div>
 
                 <div class="form-group">
                     <h:outputLabel for="summary" value="Summary" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
                     <div class="col-sm-6">
-                        <p:inputTextarea id="summary" value="#{requestBean.request.summary}" styleClass="form-control"/>
+                        <p:inputTextarea id="summary" required="true" value="#{requestBean.request.summary}" styleClass="form-control"/>
                     </div></div>
 
 
