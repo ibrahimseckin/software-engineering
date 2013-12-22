@@ -38,7 +38,7 @@
                         <ul class="nav navbar-nav">
                             <li class="#{navbar.isActive(1)}"><h:link outcome="index" value="Home" /></li>
                             <li class="#{navbar.isActive(6)}"><h:link outcome="providerpage" value="Providers" /></li>
-                            <li class="#{navbar.isActive(2)}"><h:link outcome="request" value="Requests" rendered="#{navbar.loggedIn}"/></li>
+                            <li class="#{navbar.isActive(2)}"><h:link outcome="request" value="Make a Request" rendered="#{navbar.loggedIn and navbar.isUser}"/></li>
                             <li class="#{navbar.isActive(3)}"><h:link outcome="register" value="Register" rendered="#{!navbar.loggedIn}"/></li>
                             <li class="#{navbar.isActive(4)}"><h:link outcome="userpage" value="Userpage" rendered="#{navbar.loggedIn}"/></li>
                             <li class="#{navbar.isActive(5)}"><h:link outcome="login" value="Login" rendered="#{!navbar.loggedIn}"/></li>

@@ -13,6 +13,7 @@ public class Requests {
     private String city;
     private int budget;
     private String summary;
+    private int selectedOffer;
     
     public Requests(){} //default constructor
     
@@ -98,5 +99,13 @@ public class Requests {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getSelectedOffer() {
+        return selectedOffer;
+    }
+
+    public void setSelectedOffer(int selectedOffer) {
+        this.selectedOffer = selectedOffer;
     }
 }
