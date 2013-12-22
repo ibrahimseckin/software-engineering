@@ -91,16 +91,10 @@ public class RegisterController {
         }
     }
 
-    /**
-     * @return the fieldList
-     */
     public List<String> getFieldList() {
         return fieldList;
     }
 
-    /**
-     * @param fieldList the fieldList to set
-     */
     public void setFieldList(List<String> fieldList) {
         this.fieldList = fieldList;
     }

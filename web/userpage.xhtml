@@ -83,19 +83,12 @@
                         </p:outputPanel>  
                     </f:facet> 
 
-                    <p:column   filterBy="requestId" filterMatchMode="contains" rendered="false" >  
+                    <p:column   filterBy="title" filterMatchMode="contains" rendered="false" >  
                     </p:column>
 
-                    <p:column id="requestIdColumn" headerText="Request" sortBy="#{providerOffer.requestId}" >
-                        <h:outputText value="#{providerOffer.requestId}" />
+                    <p:column id="title" headerText="Request" sortBy="#{providerOffer.request.title}" >
+                        <h:link outcome="requestDetails?id=#{providerOffer.requestId}"><h:outputText value="#{providerOffer.request.title}" /></h:link>
                     </p:column>
-
-                    <p:column   filterBy="price" filterMatchMode="contains" rendered="false" >  
-                    </p:column>
-
-                    <p:column id="price"   headerText="price" sortBy="#{providerOffer.price}" >  
-                        <h:outputText value="#{providerOffer.price}" />  
-                    </p:column>  
 
                     <p:column   filterBy="explanation" filterMatchMode="contains" rendered="false" >  
                     </p:column>
@@ -103,11 +96,6 @@
                     <p:column id="explanation"   headerText="explanation" sortBy="#{providerOffer.exp}">  
                         <h:outputText value="#{providerOffer.exp}" />  
                     </p:column>
-                    
-                    <p:column id="selected"   headerText="selected" sortBy="#{providerOffer.selected}">  
-                        <h:outputText value="#{providerOffer.selected}" />  
-                    </p:column>
-
                 </p:dataTable> 
                                 </h:form>
                          </p:tab>  

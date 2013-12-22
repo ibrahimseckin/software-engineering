@@ -3,6 +3,7 @@ package getServices.dao;
 import static getServices.dao.DaoConnect.conn;
 import getServices.model.Offers;
 import getServices.model.Provider;
+import getServices.model.Requests;
 import getServices.util.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,21 +78,26 @@ public class OfferDao extends DaoConnect {
    public List<Offers> getOffers(int providerId) {
         try {
             this.offersList = new ArrayList<Offers>();
-            String query = "SELECT id,requestid,providerid,price,exp,accepted from (offers) where providerid = ? ";
+            String query = "SELECT *"
+                    + " from offers INNER JOIN requests on offers.requestid = requests.id"
+                    + " where providerid = ? ";
 
             pstatement = conn.prepareStatement(query);
             pstatement.setInt(1, providerId);
             result = pstatement.executeQuery();
 
             if (result.next()) {
-                int id = result.getInt("id");
+                int id = result.getInt("offers.id");
                 int requestid = result.getInt("requestid");
                 int providerid = result.getInt("providerid");
                 int price = result.getInt("price");
                 String exp = result.getString("exp");
                 boolean selected = result.getBoolean("accepted");
-
-                this.offersList.add(new Offers(id, requestid, providerid, price, exp, selected));
+                Offers offer = new Offers(id, requestid, providerid, price, exp, selected);
+                Requests request = new Requests();
+                request.setTitle(result.getString("requests.title"));
+                offer.setRequest(request);
+                this.offersList.add(offer);
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());

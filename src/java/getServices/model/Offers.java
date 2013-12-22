@@ -8,6 +8,7 @@ public class Offers {
     private String exp;
     private boolean selected;
     private Provider provider;
+    private Requests request;
     
     public Offers(){}
     
@@ -19,6 +20,7 @@ public class Offers {
         this.exp = exp;
         this.selected = selected;
         this.provider = new Provider();
+        this.request = new Requests();
     }
     
     public int getId(){
@@ -74,5 +76,13 @@ public class Offers {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    public Requests getRequest() {
+        return request;
+    }
+
+    public void setRequest(Requests request) {
+        this.request = request;
     }
 }
