@@ -19,13 +19,13 @@
         
         <div class="row">  
          <div class="col-lg-6">
-             <div>
+             <div class="well">
           <div class="row">
               <div class="col-lg-6">
-                  <h:outputText value="Requested by #{detailsBean.user.username}"/>
+                  Requested by <strong>#{detailsBean.user.username}</strong>
               </div>
           <div class="col-lg-6 small">
-              <h:outputText value="in #{detailsBean.request.requestDate}"/>
+              <small>in #{detailsBean.request.requestDate}</small>
               </div>
           
           </div>
@@ -39,6 +39,22 @@
                 <h:outputText value="Deadline: #{detailsBean.request.timelimit}"/>
             </div>
           </div>
+          <div class="row">
+            <div class ="col-md-12">
+                <h:outputText value="Email: #{detailsBean.user.email}"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class ="col-md-12">
+                <h:outputText value="Phone number: #{detailsBean.user.phoneNumber}"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class ="col-md-12">
+                <h:outputText value="City:  #{detailsBean.user.city}"/>
+            </div>
+          </div>
+                 </div>
          <div class="row">
          <p:outputPanel rendered="#{!navbar.isUser and navbar.loggedIn}">
             <h:form class="form-horizontal" id="offer">
@@ -51,7 +67,9 @@
                                 </div></div>
                             <div class="form-group">
                                 <h:outputLabel for="price" value="Price: " styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                                <div class="col-sm-6"><h:inputText id="price" value="#{detailsBean.newOffer.price}" styleClass="form-control"/>
+                                <div class="col-sm-6"><h:inputText id="price" value="#{detailsBean.newOffer.price}" styleClass="form-control">
+                                        <f:validateLongRange for="price" minimum="10" maximum="10000" />
+                                    </h:inputText>
                                 </div></div>
                             <div class="col-sm-offset-3 col-sm-6">
                                 <p:commandButton id="offerButton" value="Make Offer" action="#{detailsBean.makeOffer(navbar.userid)}" update="growl"/>
@@ -60,7 +78,7 @@
            
            </p:outputPanel>    
            </div> 
-             </div>
+             
          </div>
         
          <div class="col-lg-6">
