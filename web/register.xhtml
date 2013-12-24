@@ -190,7 +190,7 @@
                                 </div></div>
                             <div class="form-group">
                                 <h:outputLabel for="city2" value="City" styleClass="col-sm-2 col-sm-offset-1 control-label"/>
-                                <div class="col-sm-6"><p:selectOneMenu id="selectmenu" value="#{register.user.city}">  
+                                <div class="col-sm-6"><p:selectOneMenu id="selectmenu" value="#{register.provider.city}">  
                                         <!--<f:selectItem itemLabel="Select One" itemValue="" />-->
                                         <f:selectItem itemLabel="istanbul" itemValue="İstanbul" />
                                         <f:selectItem itemLabel="Adana" itemValue="Adana" />
@@ -280,7 +280,7 @@
                                 <p:outputLabel value="Field: " styleClass="col-sm-2 col-sm-offset-1 control-label"/>
                                 <div class="col-sm-6">
                                     <p:selectManyCheckbox id="field2" value="#{register.provider.field}" layout="grid" columns="3">
-                                        <f:selectItems value="#{register.fieldList}"/> 
+                                        <f:selectItems value="#{register.sfieldList}"/> 
                                     </p:selectManyCheckbox>
                                 </div></div>
                             <div class="form-group">
