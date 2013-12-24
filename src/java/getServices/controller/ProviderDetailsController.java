@@ -1,6 +1,10 @@
 package getServices.controller;
 
+
 import getServices.dao.CommentDao;
+
+import getServices.dao.MyfieldsDao;
+
 import getServices.dao.ProviderDao;
 import getServices.model.Comments;
 import getServices.model.Provider;
@@ -22,14 +26,22 @@ public class ProviderDetailsController {
     private Provider provider = new Provider();
 //    private List<Field> fieldList;
     private final ProviderDao providerdao;
+    private final MyfieldsDao myfieldsdao;
     private int passedParameter;
     private  List<Comments> commentList = new ArrayList<Comments>();
+
+    private List<String> fieldListe;
+
     
     public ProviderDetailsController() throws Exception{
         providerdao = new ProviderDao();
+        myfieldsdao = new MyfieldsDao();
         this.passedParameter = getPassedParameter();
         provider = providerdao.getOneProvider(getPassedParameter());
+
         commentList = GetProviderCommentList(passedParameter);
+
+        fieldListe=myfieldsdao.getFields(passedParameter);
     }
     
     
@@ -50,6 +62,20 @@ public class ProviderDetailsController {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    /**
+     * @return the fieldListe
+     */
+    public List<String> getFieldListe() {
+        return fieldListe;
+    }
+
+    /**
+     * @param fieldListe the fieldListe to set
+     */
+    public void setFieldListe(List<String> fieldListe) {
+        this.fieldListe = fieldListe;
     }
     
         

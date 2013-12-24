@@ -20,6 +20,7 @@
             <p> Phone Number: <h:outputText value="#{detailsProvider.provider.phoneNumber}"/></p>
             <p> E-mail: <h:outputText value="#{detailsProvider.provider.email}"/></p>
             <p> Rating: <h:outputText value="#{detailsProvider.provider.rate}"/></p>
+            <p> Fields: <p:dataList value="#{detailsProvider.fieldListe}" var="field"> #{field} </p:dataList></p>
         </div>
          
         <div>
