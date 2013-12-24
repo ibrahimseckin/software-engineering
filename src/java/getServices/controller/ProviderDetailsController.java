@@ -8,8 +8,10 @@ import getServices.dao.MyfieldsDao;
 import getServices.dao.ProviderDao;
 import getServices.model.Comments;
 import getServices.model.Provider;
+import getServices.model.Session;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -29,7 +31,7 @@ public class ProviderDetailsController {
     private final MyfieldsDao myfieldsdao;
     private int passedParameter;
     private  List<Comments> commentList = new ArrayList<Comments>();
-
+    private String message;
     private List<String> fieldListe;
 
     
@@ -78,6 +80,17 @@ public class ProviderDetailsController {
         this.fieldListe = fieldListe;
     }
     
+    public String SendMessage(String message) throws Exception
+    {
+        CommentDao cDao = new CommentDao();
+        //
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        Session session = (Session) sessionMap.get("session");
+        if(!session.isIsLoggedIn()) return "index.jsf?faces-redirect=true";
+        int id = session.getUserId();
+        cDao.insertComment(id, this.passedParameter, message);
+        return "providerDetails.jsf?faces-redirect=true&id="+passedParameter;
+    }
         
     public List<Comments> GetProviderCommentList(int providerid) throws Exception 
     {
@@ -101,4 +114,14 @@ public class ProviderDetailsController {
         this.commentList = commentList;
     }
     
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
