@@ -12,50 +12,89 @@ package getServices.model;
  */
 public class Comments {
     
-    private int id;
-    private int userId;
-    private int providerId;
+    private int providerid;
+    private String firstname;
+    private String surname;
+    private String username;
     private String content;
     
     public Comments(){}
     
-    Comments(int id, int userId, int providerId, String content){
-        this.id = id;
-        this.providerId = providerId;
-        this.userId = userId;
-        this.content = content;    
+    Comments(int providerId, String firstName, String surName, String userName, String conTent){
+        this.providerid = providerId;
+        this.firstname = firstName;
+        this.surname = surName;
+        this.username = userName;
+        this.content = conTent;    
     }
-    
-    public int getId(){
-        return id;
+    /**
+     * @return the providerid
+     */
+    public int getProviderid() {
+        return providerid;
     }
-    
-    public void setId(int id){
-        this.id = id;    
+
+    /**
+     * @param providerid the providerid to set
+     */
+    public void setProviderid(int providerid) {
+        this.providerid = providerid;
     }
-    
-    public int getProviderId(){
-        return providerId;
+
+    /**
+     * @return the firstname
+     */
+    public String getFirstname() {
+        return firstname;
     }
-    
-    public void setProviderId(int providerId){
-        this.providerId = providerId;    
+
+    /**
+     * @param firstname the firstname to set
+     */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
-    
-    public int getUserId(){
-        return userId;
+
+    /**
+     * @return the surname
+     */
+    public String getSurname() {
+        return surname;
     }
-    
-    public void setUserId(int userId){
-        this.userId = userId;    
+
+    /**
+     * @param surname the surname to set
+     */
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
-    
-    public String getContent(){
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the content
+     */
+    public String getContent() {
         return content;
     }
-    
-    public void setContent(String content){
-        this.content = content;    
+
+    /**
+     * @param content the content to set
+     */
+    public void setContent(String content) {
+        this.content = content;
     }
     
 }

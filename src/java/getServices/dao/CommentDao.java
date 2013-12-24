@@ -70,7 +70,11 @@ public class CommentDao extends DaoConnect{
         try 
         {
             List<Comments> PComments = new ArrayList<Comments>(); 
-            String query = "SELECT * from (comments) where providerid =?";
+            //String query = "SELECT * from (comments) where providerid =?";
+            String query = "select comments.providerid, users.firstname, users.surname, users.username, comments.content " + 
+                            "from users, comments " +
+                            "where (users.id = comments.userid AND comments.providerid = ?)";
+            
             
             pstatement = conn.prepareStatement(query);
             pstatement.setInt(1, providerid);
@@ -78,9 +82,10 @@ public class CommentDao extends DaoConnect{
             
             while (result.next()) {
                 Comments comment = new Comments();
-                comment.setId(result.getInt("id"));
-                comment.setUserId(result.getInt("userid"));
-                comment.setProviderId(result.getInt("providerid"));
+                comment.setProviderid(result.getInt("providerid"));
+                comment.setFirstname(result.getString("firstname"));
+                comment.setSurname(result.getString("surname"));
+                comment.setUsername(result.getString("username"));
                 comment.setContent(result.getString("content"));
                 PComments.add(comment);
             }
@@ -96,16 +101,19 @@ public class CommentDao extends DaoConnect{
         try 
         {
             List<Comments> PComments = new ArrayList<Comments>(); 
-            String query = "SELECT * from (comments) ";
+            String query = "select comments.providerid, users.firstname, users.surname, users.username, comments.content " +
+"                           from users, comments " +
+"                           where (users.id = comments.userid) ";
             
             statement = conn.createStatement();
             result = statement.executeQuery(query);
             
             while (result.next()) {
                 Comments comment = new Comments();
-                comment.setId(result.getInt("id"));
-                comment.setUserId(result.getInt("userid"));
-                comment.setProviderId(result.getInt("providerid"));
+                comment.setProviderid(result.getInt("providerid"));
+                comment.setFirstname(result.getString("firstname"));
+                comment.setSurname(result.getString("surname"));
+                comment.setUsername(result.getString("username"));
                 comment.setContent(result.getString("content"));
                 PComments.add(comment);
             }
