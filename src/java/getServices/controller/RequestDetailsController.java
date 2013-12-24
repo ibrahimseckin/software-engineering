@@ -54,7 +54,8 @@ public class RequestDetailsController {
     }
     
     public String isSuccess(boolean selected){
-        if(selected) return "background: lime";
+        if(selected) return "background: #CDF074";
+//return "background: lime";
         return "";  
     }
     

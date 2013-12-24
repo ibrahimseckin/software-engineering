@@ -44,14 +44,14 @@
                             <li class="#{navbar.isActive(5)}"><h:link outcome="login" value="Login" rendered="#{!navbar.loggedIn}"/></li>
                         </ul>
 
-                        <h:form styleClass="navbar-form navbar-right">
+                        <h:form styleClass="navbar-form navbar-right"><!--
                             <div class="form-group">
-                                <p:inputText value="#{login.user.username}" 
+                                <p:inputText value="{login.user.username}" 
                                              id="searching" label="search" styleClass="form-control input-sm"/>
                                 <p:watermark for="searching" value="Search for services" />
                             </div>
                             <p:commandButton id="searchButton" value="Search" title="Search" update="" 
-                                             action="#{login.buttonLogin}" styleClass="btn btn-success btn-xs"/>
+                                             action="{login.buttonLogin}" styleClass="btn btn-success btn-xs"/>-->
                             <p:commandButton id="logoutButton" value="Logout" title="Logout" update="" rendered="#{navbar.loggedIn}"
                                              action="#{login.logout}" styleClass="btn btn-success btn-xs"/>
                         </h:form>
