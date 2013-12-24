@@ -1,7 +1,10 @@
 package getServices.controller;
 
+import getServices.dao.CommentDao;
 import getServices.dao.ProviderDao;
+import getServices.model.Comments;
 import getServices.model.Provider;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -20,11 +23,13 @@ public class ProviderDetailsController {
 //    private List<Field> fieldList;
     private final ProviderDao providerdao;
     private int passedParameter;
+    private  List<Comments> commentList = new ArrayList<Comments>();
     
     public ProviderDetailsController() throws Exception{
         providerdao = new ProviderDao();
         this.passedParameter = getPassedParameter();
         provider = providerdao.getOneProvider(getPassedParameter());
+        commentList = GetProviderCommentList(passedParameter);
     }
     
     
@@ -45,6 +50,29 @@ public class ProviderDetailsController {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+    
+        
+    public List<Comments> GetProviderCommentList(int providerid) throws Exception 
+    {
+        List<Comments> pcomments = new ArrayList<Comments>();
+        CommentDao cDao = new CommentDao();
+        pcomments = cDao.getProviderComments(providerid);
+        return pcomments;
+    }
+
+    /**
+     * @return the commentList
+     */
+    public List<Comments> getCommentList() {
+        return commentList;
+    }
+
+    /**
+     * @param commentList the commentList to set
+     */
+    public void setCommentList(List<Comments> commentList) {
+        this.commentList = commentList;
     }
     
 }

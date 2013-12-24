@@ -17,7 +17,7 @@ public class Comments {
     private int providerId;
     private String content;
     
-    Comments(){}
+    public Comments(){}
     
     Comments(int id, int userId, int providerId, String content){
         this.id = id;
