@@ -9,7 +9,7 @@ public class Provider {
     private String email;
     private String address;
     private String city;
-    private List<String> field;
+    private List<Fields> field;
     private Double rate;
     private String resume;
     private String username;
@@ -86,11 +86,11 @@ public class Provider {
         this.city = city;
     }
 
-    public List<String> getField() {
+    public List<Fields> getField() {
         return field;
     }
 
-    public void setField(List<String> field) {
+    public void setField(List<Fields> field) {
         this.field = field;
     }
 

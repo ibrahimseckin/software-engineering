@@ -25,11 +25,11 @@ public class ProviderDao extends DaoConnect {
     }
 
     public void insertProvider(String pname, String phoneNumber, String email,
-            String address, String city, String field, String username, String password) {
+            String address, String city, String username, String password) {
         try {
             
-            String query = "Insert into providers" + "(pname,phoneno,email,address,city,field,username,password)"
-                    + "values (?,?,?,?,?,?,?,?) ";
+            String query = "Insert into providers" + "(pname,phoneno,email,address,city,username,password)"
+                    + "values (?,?,?,?,?,?,?) ";
 
             pstatement = conn.prepareStatement(query);
             pstatement.setString(1, pname);
@@ -37,9 +37,8 @@ public class ProviderDao extends DaoConnect {
             pstatement.setString(3, email);
             pstatement.setString(4, address);
             pstatement.setString(5, city);
-            pstatement.setString(6, field);
-            pstatement.setString(7, username);
-            pstatement.setString(8, password);
+            pstatement.setString(6, username);
+            pstatement.setString(7, password);
             pstatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -90,6 +89,23 @@ public class ProviderDao extends DaoConnect {
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
         }
+    }
+    
+    public int getLastId(){
+        int id = 0;
+        try {
+            String query = "SELECT * FROM (providers) order by id desc limit 1";
+
+            statement = conn.createStatement();
+            result = statement.executeQuery(query);
+
+            if (result.next()) {
+                id = result.getInt("id");
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return id;
     }
     
     public List<Provider> getProviders() {

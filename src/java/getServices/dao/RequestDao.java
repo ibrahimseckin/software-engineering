@@ -127,7 +127,7 @@ public class RequestDao extends DaoConnect {
                 String city = result.getString("city");
                 int budget = result.getInt("budget");
                 String summary = result.getString("summary");
-                    
+
                 getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
             }
         } catch (SQLException ex) {
@@ -135,8 +135,46 @@ public class RequestDao extends DaoConnect {
         }
         return getRequestList();
     }
-    
-    public List<Requests> getRequestForP(int providerId) {
+
+    public List<String> getListField() {
+        //logIt("getListField calisti");
+        try {
+            setFieldList(new ArrayList<String>());
+            String query = "SELECT name FROM (fields) ";
+
+            statement = conn.createStatement();
+            result = statement.executeQuery(query);
+
+            while (result.next()) {
+                String field = result.getString("name");
+                //logIt("field:" + field);
+                getFieldList().add(field);
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        //logIt("getFieldList cikti");
+        return getFieldList();
+    }
+
+    public List<String> getFieldList() {
+        return fieldList;
+    }
+
+    public void setFieldList(List<String> fieldList) {
+        this.fieldList = fieldList;
+    }
+
+    public List<Requests> getRequestList() {
+        return requestList;
+    }
+
+    public void setRequestList(List<Requests> requestList) {
+        this.requestList = requestList;
+    }
+
+
+public List<Requests> getRequestForP(int providerId) {
         try {
             setRequestList(new ArrayList<Requests>());
             String query = "SELECT * FROM requests WHERE FIELD IN (" +
@@ -166,42 +204,5 @@ public class RequestDao extends DaoConnect {
             throw new UnsupportedOperationException(ex.getMessage());
         }
         return getRequestList();
-    }
-
-    public List<String> getListField() {
-        logIt("getListField calisti");
-        try {
-            setFieldList(new ArrayList<String>());
-            String query = "SELECT name FROM (fields) ";
-
-            statement = conn.createStatement();
-            result = statement.executeQuery(query);
-
-            while (result.next()) {
-                String field = result.getString("name");
-                logIt("field:" + field);
-                getFieldList().add(field);
-            }
-        } catch (SQLException ex) {
-            throw new UnsupportedOperationException(ex.getMessage());
-        }
-        logIt("getFieldList cikti");
-        return getFieldList();
-    }
-
-    public List<String> getFieldList() {
-        return fieldList;
-    }
-
-    public void setFieldList(List<String> fieldList) {
-        this.fieldList = fieldList;
-    }
-
-    public List<Requests> getRequestList() {
-        return requestList;
-    }
-
-    public void setRequestList(List<Requests> requestList) {
-        this.requestList = requestList;
     }
 }
