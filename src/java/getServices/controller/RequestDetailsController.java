@@ -41,12 +41,24 @@ public class RequestDetailsController {
         offerList = offerdao.getOffersToRequest(request.getId());
     }
     
+    public String selectOffer(int offerid, int requestid){
+        offerdao.acceptOffer(offerid,requestid);
+        return "requestDetails?faces-redirect=true&id="+passedParameter;
+    }
+    
     public String makeOffer(int providerid){
         newOffer.setRequestId(passedParameter);
         newOffer.setproviderId(providerid);
         offerdao.insertOffer(passedParameter, providerid, newOffer.getPrice(), newOffer.getExp());
         return "requestDetails?faces-redirect=true&id="+passedParameter;
     }
+    
+    public String isSuccess(boolean selected){
+        if(selected) return "background: lime";
+        return "";  
+    }
+    
+    
     
     public final int getPassedParameter() {
         FacesContext facesContext = FacesContext.getCurrentInstance();

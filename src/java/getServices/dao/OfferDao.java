@@ -136,4 +136,20 @@ public class OfferDao extends DaoConnect {
         return this.offersList;
     }
     
+        public void acceptOffer(int offerid, int requestid){
+        try {
+            String query = "UPDATE requests SET selected = "+offerid
+                    + " where id ="+requestid;
+            
+            logIt("Request id is "+requestid);
+            logIt("Offer id is "+offerid);
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+            query = "UPDATE offers SET accepted = "+true+" where id ="+offerid;
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+    }
+    
 }

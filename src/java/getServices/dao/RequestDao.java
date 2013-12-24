@@ -54,7 +54,7 @@ public class RequestDao extends DaoConnect {
             System.out.println("ERROR: " + e.getMessage());
         }
     }
-
+    
     public Requests getOneRequest(int inputId) {
         Requests request = new Requests();
         try {
@@ -74,6 +74,7 @@ public class RequestDao extends DaoConnect {
                 request.setBudget(result.getInt("budget"));
                 request.setSummary(result.getString("summary"));
                 request.setRequestDate(result.getDate("reqdate"));
+                request.setSelectedOffer(result.getInt("selected"));
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
@@ -101,7 +102,7 @@ public class RequestDao extends DaoConnect {
                 int budget = result.getInt("budget");
                 String summary = result.getString("summary");
 
-                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
+                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary,0));
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
@@ -127,8 +128,8 @@ public class RequestDao extends DaoConnect {
                 String city = result.getString("city");
                 int budget = result.getInt("budget");
                 String summary = result.getString("summary");
-
-                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
+                    
+                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary,0));
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());
@@ -198,7 +199,7 @@ public List<Requests> getRequestForP(int providerId) {
                 int budget = result.getInt("budget");
                 String summary = result.getString("summary");
                     
-                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
+                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary,0));
             }
         } catch (SQLException ex) {
             throw new UnsupportedOperationException(ex.getMessage());

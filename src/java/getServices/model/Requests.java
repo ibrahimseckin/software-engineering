@@ -17,7 +17,7 @@ public class Requests {
     
     public Requests(){} //default constructor
     
-    public Requests(int id1,int userid1,String title1,String field,Date timelimit,Date requestDate, String city, int budget, String summary){
+    public Requests(int id1,int userid1,String title1,String field,Date timelimit,Date requestDate, String city, int budget, String summary, int selectedOffer){
         this.field = field;
         this.id = id1;
         this.userid = userid1;
@@ -27,6 +27,7 @@ public class Requests {
         this.city = city;
         this.budget = budget;
         this.summary = summary;
+        this.selectedOffer=selectedOffer;
     }
     
     public int getId() {

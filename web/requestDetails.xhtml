@@ -56,6 +56,7 @@
          <div class="col-lg-6">
              <p:dataList value="#{detailsBean.offerList}" var="offer" type="definition" 
                          emptyMessage="No offers have been done to this request yet." lazy="true">
+                 <div style="#{detailsBean.isSuccess(offer.selected)}">
             <div class="row">
                 <div class="col-md-7 col-md-offset-1" style="padding:5px">
                 <h:link outcome="providerDetails?id=#{offer.providerId}">#{offer.provider.pname}</h:link>
@@ -72,9 +73,13 @@
                     Price: #{offer.price}
                 </div>
                 
-            <div class="col-md-5"></div>
+                <div class="col-md-5"></div><h:form>
+                <p:commandButton 
+                    rendered="#{(navbar.userid eq detailsBean.request.userid)  and (detailsBean.request.selectedOffer eq 0)}"
+                      value="Accept This Offer" action="#{detailsBean.selectOffer(offer.id,detailsBean.request.id)}"/></h:form>
             </div>
                  <p:separator id="separator"/> 
+                 </div>
             <f:facet name="header">
                 <h4>Offers to this request</h4>
             </f:facet>

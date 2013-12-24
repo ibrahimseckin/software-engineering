@@ -33,11 +33,12 @@ public class RequestController {
         fieldList = requestdao.getListField();
         }
     
-    public void buttonRequest(int userid) throws Exception {
+    public String buttonRequest(int userid) throws Exception {
         request.setUserid(userid);
         requestdao = new RequestDao();
         requestdao.insertRequest(request.getUserid(), request.getTitle(), request.getField(), request.getTimelimit(),
                 request.getCity(), request.getBudget(), request.getSummary());
+        return "index.jsf";
     }
 
     public Requests getRequest() {
