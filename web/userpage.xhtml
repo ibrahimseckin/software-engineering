@@ -17,9 +17,7 @@
         <p:outputPanel rendered="#{navbar.isUser}">
             
             <h3 class="page-header col-sm-offset-1">#{userpage.user.username}</h3>
-        <div class ="col-sm-8 col-sm-offset-1">
-            
-                 
+        <div class ="col-sm-8 col-sm-offset-1">                
                  <p:accordionPanel dynamic="true" cache="true" activeIndex="-1">
                      <p:ajax event="tabChange" listener="#{userpage.openRequestTab()}"/>
                      <p:tab title="Show requests by this user">  
@@ -57,13 +55,13 @@
                          </p:tab>  
                 </p:accordionPanel>  
         </div>
+            
         </p:outputPanel>
     <p:outputPanel rendered="#{!navbar.isUser}">
         
         <h3 class="page-header col-sm-offset-1">#{userpage.provider.username}</h3>
-        <div class ="col-sm-8 col-sm-offset-1">
-            
-                 
+        
+        <div class ="col-sm-8 col-sm-offset-1">                 
                  <p:accordionPanel dynamic="true" cache="true" activeIndex="-1">
                      <p:ajax event="tabChange" listener="#{userpage.openRequestTab2()}"/>
                      <p:tab title="Show offers by this provider">  
@@ -96,6 +94,45 @@
                     <p:column id="explanation"   headerText="explanation" sortBy="#{providerOffer.exp}">  
                         <h:outputText value="#{providerOffer.exp}" />  
                     </p:column>
+                </p:dataTable> 
+                                </h:form>
+                         </p:tab>  
+                </p:accordionPanel>  
+        </div>
+        
+        <div class ="col-sm-8 col-sm-offset-1">                
+                 <p:accordionPanel dynamic="true" cache="true" activeIndex="-1">
+                     <p:ajax event="tabChange" listener="#{userpage.openRequestForP()}"/>
+                     <p:tab title="Show relevant requests for me  ">  
+                         <h:form styleClass="form-horizontal">
+                             <p:growl id="growl" showDetail="true" life="3000" />
+                <p:dataTable style="margin-top: 0px; border: 0px;" id="datatable" var="userRequest" value="#{userpage.requestList}" widgetVar="requestTable"
+                             paginator="true" rows="20"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="10,20,30"
+                             paginatorPosition="bottom"
+                             emptyMessage="No request found with given criteria" filteredValue="#{userpage.filteredRequestList}"
+                             >
+                    <f:facet name="header" > 
+                        <p:outputPanel style="float:right; margin-top: 5px; ">  
+                            <h:outputText value="Search  " />  
+                            <p:inputText id="globalFilter" onkeyup="requestTable.filter()"   style="height: 30px" />  
+                        </p:outputPanel>  
+                    </f:facet> 
+
+                    <p:column   filterBy="title" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="title" headerText="Field" sortBy="#{userRequest.title}" >
+                        <h:link outcome="requestDetails?id=#{userRequest.id}">#{userRequest.title}</h:link>
+                    </p:column>
+
+                    <p:column   filterBy="requestDate" filterMatchMode="contains" rendered="false" >  
+                    </p:column>
+
+                    <p:column id="requestDare"   headerText="RequestDate" sortBy="#{userRequest.requestDate}" >  
+                        <h:outputText value="#{userRequest.requestDate}" />  
+                    </p:column>  
                 </p:dataTable> 
                                 </h:form>
                          </p:tab>  

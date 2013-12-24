@@ -135,6 +135,38 @@ public class RequestDao extends DaoConnect {
         }
         return getRequestList();
     }
+    
+    public List<Requests> getRequestForP(int providerId) {
+        try {
+            setRequestList(new ArrayList<Requests>());
+            String query = "SELECT * FROM requests WHERE FIELD IN (" +
+"    SELECT name from fields WHERE ID IN (" +
+"        SELECT FIELDID FROM myfields WHERE PROVIDERID = ?" +
+"        )" +
+"    )";
+
+            pstatement = conn.prepareStatement(query);
+            pstatement.setInt(1, providerId);
+            result = pstatement.executeQuery();
+
+            while (result.next()) {
+                int id = result.getInt("id");
+                int userid = result.getInt("userid");
+                String title = result.getString("title");
+                String field = result.getString("field");
+                Date reqdate = result.getDate("reqdate");
+                Date timelimit = result.getDate("timelimit");
+                String city = result.getString("city");
+                int budget = result.getInt("budget");
+                String summary = result.getString("summary");
+                    
+                getRequestList().add(new Requests(id, userid, title, field, timelimit, reqdate, city, budget, summary));
+            }
+        } catch (SQLException ex) {
+            throw new UnsupportedOperationException(ex.getMessage());
+        }
+        return getRequestList();
+    }
 
     public List<String> getListField() {
         logIt("getListField calisti");

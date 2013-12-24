@@ -26,10 +26,13 @@ public class UserPageController {
 
     private Requests request = new Requests();
     private boolean opened;
+    private boolean openedForP;
     private User user;
     private Provider provider;
     private List<Requests> requestList;
     private List<Requests> filteredRequestList;
+    //private List<Requests> requestListForP;
+    //private List<Requests> filteredRequestListForP;
     private List<Offers> offerList;
     private List<Offers> filteredOfferList;
     RequestDao requestdao;
@@ -75,6 +78,15 @@ public class UserPageController {
             offerList = offerdao.getOffers(session.getUserId());
         }
         opened = true;
+    }
+    
+    public void openRequestForP() throws Exception {
+        logIt("openRequestForP basla");
+        if (!opened) {
+            requestdao = new RequestDao();
+            requestList = requestdao.getRequestForP(session.getUserId());
+        }
+        openedForP = true;
     }
 
     public List<Requests> getRequestList() {
@@ -169,5 +181,20 @@ public class UserPageController {
      */
     public void setFilteredOfferList(List<Offers> filteredOfferList) {
         this.filteredOfferList = filteredOfferList;
+    }
+
+    
+    /**
+     * @return the openedForP
+     */
+    public boolean isOpenedForP() {
+        return openedForP;
+    }
+
+    /**
+     * @param openedForP the openedForP to set
+     */
+    public void setOpenedForP(boolean openedForP) {
+        this.openedForP = openedForP;
     }
 }
